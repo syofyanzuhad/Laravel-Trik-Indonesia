@@ -29,6 +29,7 @@ public function getCreatedAtFormattedAtAttribute()
 }
 ```
 Method ini bisa digunakan dengan cara seperti ini : `$entry->created_at_formatted`.
+
 Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 
 **updated_at**
@@ -42,6 +43,7 @@ public function getUpdatedAtFormattedAtAttribute()
 }
 ```
 Method ini bisa digunakan dengan cara seperti ini : `$entry->updated_at_formatted`.
+
 Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 
 ## Lain-lain
