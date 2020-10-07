@@ -2,6 +2,7 @@
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **2** trik._
+
 **Terakhir diupdate 7 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
@@ -16,6 +17,7 @@ _Berisi: **2** trik._
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 
 - [Cara mengubah format `created_at` dan `updated_at` lewat model](#cara-mengubah-format-created_at-dan-updated_at-lewat-model)
+
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
 
 ### Cara mengubah format `created_at` dan `updated_at` lewat model
