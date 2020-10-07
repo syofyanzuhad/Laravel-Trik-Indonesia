@@ -7,7 +7,7 @@ _Berisi: **3** trik._
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
-## Daftar Isi :
+# Daftar Isi :
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Lain - lain](#lain-lain) (1 trik).
@@ -22,7 +22,7 @@ _Berisi: **3** trik._
 
 ### Cara mengubah format output `created_at` dan `updated_at` lewat model
 
-**created_at**
+- **created_at**
 
 Untuk mengubah format `created_at`, tambahkan method berikut di dalam model:
 
@@ -36,7 +36,7 @@ Method ini bisa digunakan dengan cara seperti ini : `$entry->created_at_formatte
 
 Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 
-**updated_at**
+- **updated_at**
 
 Untuk mengubah format `updated_at`, tambahkan method berikut di dalam model:
 
@@ -54,12 +54,13 @@ Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 
 Caranya sangat mudah 
 
-**created_at**
+- **created_at**
+
 Untuk created_at cukup menambahkan :
 
      const CREATED_AT = 'tgl_dibuat';
 
-**updated_at**
+- **updated_at**
 
 dan untuk  updated_at cukup menambahkan:
 
@@ -68,27 +69,29 @@ dan untuk  updated_at cukup menambahkan:
 
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik)
-- [Penulisan singkat `if dan else, if elseif dan else`](#penulisan-singkat-if-dan-else-if-elseif-dan-else)
+- [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
 
-## Penulisan singkat if dan else, if elseif dan else 
+## Penulisan singkat if-else dan if-elseif-else dengan ternary
 
-**if dan else**
-Penulisan singkat if dan else yaitu: 
+- **if-else**
+
+Penulisan singkat if-else yaitu: 
 
     $role = 0;
     echo $role == 0 ? 'Admin' : 'Pengunjung';
-**if elseif dan else**
-Penulisan singkat if elseif dan else yaitu: 
-Hindari penulisan seperti ini: 
 
-    $role = 0;
-    echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
-    
+- **if-elseif-else**
+
+**Hindari** penulisan seperti ini: 
+
+> $role = 0;
+
+> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
 	
 Jika mengikuti penulisan di atas maka akan muncul pesan error
-`**Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)`**`
+**`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
 
-Yang benar adalah seperti ini
+Yang benar adalah seperti ini:
     
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
