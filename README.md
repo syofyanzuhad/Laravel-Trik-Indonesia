@@ -16,18 +16,18 @@ _Berisi: **2** trik._
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 
-- [Cara mengubah format `created_at` dan `updated_at` lewat model](#cara-mengubah-format-created_at-dan-updated_at-lewat-model)
+- [Cara mengubah format output `created_at` dan `updated_at` lewat model](#cara-mengubah-format-output-created_at-dan-updated_at-lewat-model)
 
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
 
-### Cara mengubah format `created_at` dan `updated_at` lewat model
+### Cara mengubah format output `created_at` dan `updated_at` lewat model
 
 **created_at**
 
 Untuk mengubah format `created_at`, tambahkan method berikut di dalam model:
 
 ```
-public function getCreatedAtFormattedAtAttribute()
+public function getCreatedAtFormattedAttribute()
 {
    return $this->created_at->format('H:i d, M Y');
 }
@@ -41,7 +41,7 @@ Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 Untuk mengubah format `updated_at`, tambahkan method berikut di dalam model:
 
 ```
-public function getUpdatedAtFormattedAtAttribute()
+public function getUpdatedAtFormattedAttribute()
 {
    return $this->updated_at->format('H:i d, M Y');
 }
