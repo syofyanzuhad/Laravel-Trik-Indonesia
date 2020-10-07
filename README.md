@@ -1,16 +1,16 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **2** trik._
+_Berisi: **3** trik._
 
-**Terakhir diupdate 7 Oktober 2020**
+**Terakhir diupdate 8 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
 ## Daftar Isi :
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
-- [Lain - lain](#lain-lain) (0 trik).
+- [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
 
@@ -64,6 +64,32 @@ Untuk created_at cukup menambahkan :
 dan untuk  updated_at cukup menambahkan:
 
     const UPDATED_AT = 'tgl_diupdate';
-
+ 
 
 ## Lain-lain
+⬆️ [Ke Atas](#laravel-trik)
+- [Penulisan singkat `if dan else, if elseif dan else`](#penulisan-singkat-if-dan-else-if-elseif-dan-else)
+
+## Penulisan singkat if dan else, if elseif dan else 
+
+**if dan else**
+Penulisan singkat if dan else yaitu: 
+
+    $role = 0;
+    echo $role == 0 ? 'Admin' : 'Pengunjung';
+**if elseif dan else**
+Penulisan singkat if elseif dan else yaitu: 
+Hindari penulisan seperti ini: 
+
+    $role = 0;
+    echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
+    
+	
+Jika mengikuti penulisan di atas maka akan muncul pesan error
+`**Unparenthesized `a ? b : c ? d : e` is deprecated. Use either `(a ? b : c) ? d : e` or `a ? b : (c ? d : e)`**`
+
+Yang benar adalah seperti ini
+    
+    $role = 0;
+    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+
