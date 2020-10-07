@@ -1,7 +1,8 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **1** trik._
+_Berisi: **2** trik._
+
 **Terakhir diupdate 7 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
@@ -63,7 +64,6 @@ Untuk created_at cukup menambahkan :
 dan untuk  updated_at cukup menambahkan:
 
     const UPDATED_AT = 'tgl_diupdate';
-
 
 
 ## Lain-lain
