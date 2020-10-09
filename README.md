@@ -10,7 +10,7 @@ _Berisi: **4** trik._
 # Daftar Isi :
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
-- [Perintah `artisan`](#perintah-artsan) (1 trik).
+- [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
