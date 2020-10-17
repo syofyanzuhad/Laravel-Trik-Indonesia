@@ -90,26 +90,35 @@ php artisan make:model User -mcr
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 
-- [Spatie Role Permission](#spatie-role-permission)
+- [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
 
-### **Spatie Role Permission**
+### **Install Spatie Role Permission**
 
 1. Install package
- composer require spatie/laravel-permission
+
+ `composer require spatie/laravel-permission`
+ 
 2. edit app/config.php
+```
 'providers' => [
     // ...
     Spatie\Permission\PermissionServiceProvider::class,
 ];
+```
 3. publish migration di terminal
-php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+
+`php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
+
 4. clear config & cache
- php artisan optimize:clear
- # or
- php artisan config:clear
+
+ `php artisan optimize:clear`
+ **or**
+ `php artisan config:clear`
+ 
 5. terakhir jalankan migration
- php artisan migrate
+
+ `php artisan migrate`
 
 ### Cara menggunakan Role
 1. membuat role 
