@@ -3,7 +3,7 @@ Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **5** trik._
 
-**Terakhir diupdate 9 Oktober 2020**
+**Terakhir diupdate 17 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
@@ -11,6 +11,7 @@ _Berisi: **5** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
+- [Package](#package) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -69,7 +70,7 @@ dan untuk  updated_at cukup menambahkan:
 
 ## Perintah `artisan`
 
-⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Package)](#package)
 
 - [Cara membuat model, controller, migration sekaligus](#cara-membuat-model-controller-migration-sekaligus)
 
@@ -85,6 +86,30 @@ Jika kita ingin membuat `controller` dengan resource (default method dari larave
 ```
 php artisan make:model User -mcr
 ```
+## Package
+
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+
+- [Spatie Role Permission](#spatie-role-permission)
+
+### **Spatie Role Permission**
+
+1. Install package
+ composer require spatie/laravel-permission
+2. edit app/config.php
+'providers' => [
+    // ...
+    Spatie\Permission\PermissionServiceProvider::class,
+];
+3. publish migration di terminal
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+4. clear config & cache
+ php artisan optimize:clear
+ # or
+ php artisan config:clear
+5. terakhir jalankan migration
+ php artisan migrate
+
 
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik)
@@ -115,4 +140,5 @@ Yang benar adalah seperti ini:
     
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+
 
