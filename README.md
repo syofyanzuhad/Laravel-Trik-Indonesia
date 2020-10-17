@@ -1,7 +1,7 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **5** trik._
+_Berisi: **6** trik._
 
 **Terakhir diupdate 17 Oktober 2020**
 
@@ -11,7 +11,7 @@ _Berisi: **5** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (1 trik).
+- [Package](#package) (2 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -91,6 +91,7 @@ php artisan make:model User -mcr
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 
 - [Spatie Role Permission](#spatie-role-permission)
+- [Cara Menggunakan Role](#cara-menggunakan-role)
 
 ### **Spatie Role Permission**
 
@@ -110,7 +111,22 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 5. terakhir jalankan migration
  php artisan migrate
 
+### Cara menggunakan Role
+1. membuat role 
+```
+use Spatie\Permission\Models\Role;
 
+$role = Role::create(['name' => 'writer']);
+```
+
+2. Menambahkan role kepada user
+```
+$user->assignRole($role);
+```
+3. Menghapus role pada user
+```
+$user->revokeRoleTo($role); //$role = nama rolenya apa
+```
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik)
 
