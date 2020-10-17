@@ -1,7 +1,7 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **4** trik._
+_Berisi: **5** trik._
 
 **Terakhir diupdate 9 Oktober 2020**
 
