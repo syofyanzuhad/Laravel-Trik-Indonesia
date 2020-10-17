@@ -110,7 +110,22 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 5. terakhir jalankan migration
  php artisan migrate
 
+### Cara menggunakan Role
+1. membuat role 
+```
+use Spatie\Permission\Models\Role;
 
+$role = Role::create(['name' => 'writer']);
+```
+
+2. Menambahkan role kepada user
+```
+$user->assignRole($role);
+```
+3. Menghapus role pada user
+```
+$user->revokeRoleTo($role); //$role = nama rolenya apa
+```
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik)
 
