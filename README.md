@@ -1,9 +1,9 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **7** trik._
+_Berisi: **6** trik._
 
-**Terakhir diupdate 17 Oktober 2020**
+**Terakhir diupdate 18 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
@@ -90,35 +90,26 @@ php artisan make:model User -mcr
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 
-- [Install Spatie Role Permission](#install-spatie-role-permission)
+- [Spatie Role Permission](#spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
 
-### **Install Spatie Role Permission**
+### **Spatie Role Permission**
 
 1. Install package
-
- `composer require spatie/laravel-permission`
- 
+ composer require spatie/laravel-permission
 2. edit app/config.php
-```
 'providers' => [
     // ...
     Spatie\Permission\PermissionServiceProvider::class,
 ];
-```
 3. publish migration di terminal
-
-`php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
-
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 4. clear config & cache
-
- `php artisan optimize:clear`
- **or**
- `php artisan config:clear`
- 
+ php artisan optimize:clear
+ # or
+ php artisan config:clear
 5. terakhir jalankan migration
-
- `php artisan migrate`
+ php artisan migrate
 
 ### Cara menggunakan Role
 1. membuat role 
