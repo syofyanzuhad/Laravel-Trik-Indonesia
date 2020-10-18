@@ -1,7 +1,7 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **7** trik._
+_Berisi: **8** trik._
 
 **Terakhir diupdate 18 Oktober 2020**
 
@@ -13,6 +13,7 @@ _Berisi: **7** trik._
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (2 trik).
 - [Templating](#templating) (1 trik).
+- [Basis Data](#basis-data) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -140,7 +141,7 @@ $user->revokeRoleTo($role); //$role = nama rolenya apa
 
 ## Templating
 
-⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data)](#basis-data)
 
 - [Html To Pdf](#html-to-pdf)
 
@@ -185,6 +186,78 @@ function toPdf($html, $landscape = false)
     }
 }
 ```
+
+### **Basis Data**
+
+[Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+
+- [Banyak Basis Data](#banyak-basis-data)
+
+## Banyak Basis Data atau Multiple Database
+- biasa di gunakan untuk aplikasi menengah ke atas
+- cara pemasangan
+
+1 di dalam file env tambahkan ini
+
+```
+DB_CONNECTION2=mysql
+DB_HOST2=127.0.0.1
+DB_PORT2=3306
+DB_DATABASE2=database ke 2
+DB_USERNAME2=root
+DB_PASSWORD2=password kamu
+```
+
+2 didalam config/database.php tambahkan
+
+
+```
+ 'mysql2' => [
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST2', '127.0.0.1'),
+            'port' => env('DB_PORT2', '3306'),
+            'database' => env('DB_DATABASE2', 'forge'),
+            'username' => env('DB_USERNAME2', 'forge'),
+            'password' => env('DB_PASSWORD2', ''),
+            'unix_socket' => env('DB_SOCKET2', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+```
+
+3 untuk default databasenya adalah firstdb, jika ingin menggunakan database ke dua ubah table di migration
+
+```
+  public function up()
+    {
+        Schema::connection(mysql2)->create('users', function (Blueprint $table) { // <= perhatikan 
+            $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+```
+
+4 jalankan migration satu satu
+
+```
+php artisan migrate --database=mysql
+php artisan migrate --database=mysql2
+```
+
+5 selesai
 
 
 ## Lain-lain
