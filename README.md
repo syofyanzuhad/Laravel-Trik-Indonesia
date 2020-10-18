@@ -153,7 +153,7 @@ function toPdf($html, $landscape = false)
     
     $wkhtmltopdf = '/usr/local/bin/wkhtmltopdf';
 
-    // Take advantage from laravel's environment variables
+    // Manfaatkan variabel lingkungan laravel
     // $wkhtmltopdf = env('WKHTMLTOPDF');
 
     $descriptorspec = [
@@ -162,18 +162,18 @@ function toPdf($html, $landscape = false)
         2 => ['pipe', 'w']  // stderr
     ];
 
-    // unset DYLD_LIBRARY_PATH as a workaround for common errors when working on a mac with a MAMP stack
+    // hapus DYLD_LIBRARY_PATH sebagai solusi untuk kesalahan umum saat bekerja di mac dengan tumpukan MAMP
     $process = proc_open('unset DYLD_LIBRARY_PATH ;' . $wkhtmltopdf . ' ' . ( $landscape ? '-O landscape' : '' ) . ' -q - -', $descriptorspec, $pipes);
 
-    // Send the HTML on stdin
+    // Kirim HTML di stdin
     fwrite($pipes[0], $html);
     fclose($pipes[0]);
 
-    // Read the outputs
+    // Baca Hasilnya
     $pdf = stream_get_contents($pipes[1]);
     $errors = stream_get_contents($pipes[2]);
 
-    // Close the process
+    // Tutup Prosessnya
     fclose($pipes[1]);
     $return_value = proc_close($process);
 
