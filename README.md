@@ -88,7 +88,7 @@ php artisan make:model User -mcr
 ```
 ## Package
 
-⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Helpers)](#Helpers)
 
 - [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
@@ -136,6 +136,53 @@ $user->assignRole($role);
 ```
 $user->revokeRoleTo($role); //$role = nama rolenya apa
 ```
+
+## Helpers
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+
+### **Membuat Tanggal Indonesia**
+
+1. Membuat folder bernama Helper didalam Folder App
+2. Membuat file helper dengan Nama TanggalIndonesia.php
+3. Membuat 1 function dengan parameter $tgl, $tampilHari = true
+```
+
+	public function tanggalIndonesia($tgl, $tampilHari = true) 
+	{
+
+	}
+
+```
+4. Membuat Codingan didalam function
+```
+	
+	$nama_hari = array("Ahad", "Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu");
+        $nama_bulan = array(1=>"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember");
+        
+        $tahun = substr($tgl,0,4);
+        $bulan = $nama_bulan[(int)substr($tgl,5,2)];
+        $tanggal = substr($tgl,8,2);
+
+        $text = "";
+
+        if ($tampilhari) {
+            $urutan_hari = date('w', mktime(0,0,0, substr($tgl,5,2), $tanggal, $tahun));
+            $hari = $nama_hari[$urutan_hari];
+            $text .= $hari.", ";
+        }
+
+        $text .= $tanggal ." ". $bulan ." ". $tahun;
+        
+        return $text;
+```
+
+### **Pengunaan Helper Tanggal Indonesia**
+```
+tanggalIndonesia(date('Y-m-d',strtotime($user->created_at)));
+
+```
+	
+
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik)
 
