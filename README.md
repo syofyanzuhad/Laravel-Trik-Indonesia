@@ -3,7 +3,7 @@ Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **7** trik._
 
-**Terakhir diupdate 17 Oktober 2020**
+**Terakhir diupdate 18 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
