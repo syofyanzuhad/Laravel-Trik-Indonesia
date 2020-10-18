@@ -1,7 +1,7 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **7** trik._
+_Berisi: **8** trik._
 
 **Terakhir diupdate 18 Oktober 2020**
 
@@ -13,7 +13,7 @@ _Berisi: **7** trik._
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (2 trik).
 - [Templating](#templating) (1 trik).
-- [Lain - lain](#lain-lain) (1 trik).
+- [Lain - lain](#lain-lain) (2 trik).
 
 ## DB Models dan Eloquent
 
@@ -191,6 +191,7 @@ function toPdf($html, $landscape = false)
 ⬆️ [Ke Atas](#laravel-trik)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+- [Validasi per menit menggunakan throttle](#Validasi-per-menit-menggunakan-throttle)
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
 
@@ -218,3 +219,25 @@ Yang benar adalah seperti ini:
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 
+### **Validasi per menit menggunakan throttle**
+1. Membuat class middleware menggunakan artisan
+2. Tambahkan Class middleware tadi ke dalam middlewareGroups yang ada di kernel.php
+3. Masuk Ke Web.php. dan Tambahkan Route middleware Group
+`
+	Route::middleware('report', 'throttle:1,1440')->group(function () {
+		Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
+	});
+	
+	//'report' -> nama middleware yg sudah terdaftar di kernel
+	//'throttle' -> library untuk
+	//'1,1440' -> 1 kali validasi dalam 24 jam/1440 menit
+`
+**Cara Merubah pesan error throttle**
+1. Masuk ke  `Exceptions/Handler.php`, masukkan kondisi di dalam function render
+`
+	if ($exception instanceof ThrottleRequestsException) {
+            return response()->json(abort(429, 'Upaya Hari Ini Sudah Habis'));
+        }else {
+            return parent::render($request, $exception);            
+        }
+`
