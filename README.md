@@ -1,7 +1,7 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **7** trik._
+_Berisi: **8** trik._
 
 **Terakhir diupdate 17 Oktober 2020**
 
@@ -12,6 +12,7 @@ _Berisi: **7** trik._
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (2 trik).
+- [Templating](#templating) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -88,7 +89,7 @@ php artisan make:model User -mcr
 ```
 ## Package
 
-⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#templating)
 
 - [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
@@ -136,6 +137,56 @@ $user->assignRole($role);
 ```
 $user->revokeRoleTo($role); //$role = nama rolenya apa
 ```
+
+## Templating
+
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+
+- [Html To Pdf](#html-to-pdf)
+
+### **Html To Pdf**
+- Sebuah fungsi untuk mengubah string html menjadi string pdf menggunakan wkhtmltopdf. Fungsi ini tidak menggunakan file sementara apa pun dan tidak bergantung pada plugin. untuk info update silahkan lihat <a href="https://github.com/meertensm/HtmlToPdf">meertensm/HtmlToPdf</a>
+
+```
+function toPdf($html, $landscape = false)
+{
+    
+    $wkhtmltopdf = '/usr/local/bin/wkhtmltopdf';
+
+    // Take advantage from laravel's environment variables
+    // $wkhtmltopdf = env('WKHTMLTOPDF');
+
+    $descriptorspec = [
+        0 => ['pipe', 'r'], // stdin
+        1 => ['pipe', 'w'], // stdout
+        2 => ['pipe', 'w']  // stderr
+    ];
+
+    // unset DYLD_LIBRARY_PATH as a workaround for common errors when working on a mac with a MAMP stack
+    $process = proc_open('unset DYLD_LIBRARY_PATH ;' . $wkhtmltopdf . ' ' . ( $landscape ? '-O landscape' : '' ) . ' -q - -', $descriptorspec, $pipes);
+
+    // Send the HTML on stdin
+    fwrite($pipes[0], $html);
+    fclose($pipes[0]);
+
+    // Read the outputs
+    $pdf = stream_get_contents($pipes[1]);
+    $errors = stream_get_contents($pipes[2]);
+
+    // Close the process
+    fclose($pipes[1]);
+    $return_value = proc_close($process);
+
+    if ($errors){
+        dd($errors);
+    }else{
+        header('Content-Type: application/pdf'); 
+        echo $pdf;
+    }
+}
+```
+
+
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik)
 
