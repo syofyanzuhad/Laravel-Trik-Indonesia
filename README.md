@@ -1,9 +1,9 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **8** trik._
+_Berisi: **9** trik._
 
-**Terakhir diupdate 17 Oktober 2020**
+**Terakhir diupdate 18 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
@@ -12,7 +12,7 @@ _Berisi: **8** trik._
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (2 trik).
-- [Templating](#templating) (1 trik).
+- [Templating](#templating) (2 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -184,6 +184,55 @@ function toPdf($html, $landscape = false)
         echo $pdf;
     }
 }
+```
+
+### **Feature Toggle**
+
+- [Feature Toggle](#feature-toggle)
+
+buat file ini di laravel projek
+
+```
+
+config/features.php
+
+<?php
+
+return [
+    'loginWithGoogle' => true,
+    'newSearchBox' => true,
+    'newsLetterBox' => false,
+    /*
+        Fitur lainnya
+
+    */
+];
+
+```
+
+kemudian edit AppServiceProvider dan tambahkan Kode Blade ini di fungsi boot ():
+
+```
+
+        Blade::if('feature', function ($feature) {
+            return config("features.$feature", false);
+        });
+        
+
+```
+
+selesai !
+
+Anda dapat menggunakan kode ini di file blade (view):
+
+```
+    
+@feature('loginWithGoogle')
+    <a href="#" class="btn btn-primary-soft">
+        <i class="fa fa-google"></i>
+        <span>Login With Google</span>
+    </a>
+@endfeature
 ```
 
 
