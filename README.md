@@ -13,7 +13,7 @@ _Berisi: **8** trik._
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (2 trik).
 - [Templating](#templating) (1 trik).
-- [Basis Data](#basis-data) (1 trik).
+- [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -187,17 +187,19 @@ function toPdf($html, $landscape = false)
 }
 ```
 
-### **Basis Data**
+## **Basis Data (Database)**
 
 [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 
-- [Banyak Basis Data](#banyak-basis-data)
+- [Koneksi Banyak Basis Data (Multiple-connection Database)](#koneksi-banyak-basis-data-multiple-connection-database))
 
-## Banyak Basis Data atau Multiple Database
+### Koneksi Banyak Basis Data (Multiple-connection Database)
+
 - biasa di gunakan untuk aplikasi menengah ke atas
-- cara pemasangan
 
-1 di dalam file env tambahkan ini
+- cara pemasangan :
+
+1. Tambahkan baris kode ini, di dalam file `.env`.
 
 ```
 DB_CONNECTION2=mysql
@@ -208,7 +210,7 @@ DB_USERNAME2=root
 DB_PASSWORD2=password kamu
 ```
 
-2 didalam config/database.php tambahkan
+2. Di dalam file `config/database.php` tambahkan baris kode berikut:
 
 
 ```
@@ -233,12 +235,12 @@ DB_PASSWORD2=password kamu
         ],
 ```
 
-3 untuk default databasenya adalah firstdb, jika ingin menggunakan database ke dua ubah table di migration
+3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration
 
 ```
   public function up()
     {
-        Schema::connection(mysql2)->create('users', function (Blueprint $table) { // <= perhatikan 
+        Schema::connection(mysql2)->create('users', function (Blueprint $table) { // <= perhatikan connection nya
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -250,14 +252,14 @@ DB_PASSWORD2=password kamu
     }
 ```
 
-4 jalankan migration satu satu
+4. Jalankan migration satu persatu
 
 ```
 php artisan migrate --database=mysql
 php artisan migrate --database=mysql2
 ```
 
-5 selesai
+5. selesai
 
 
 ## Lain-lain
