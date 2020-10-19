@@ -90,7 +90,7 @@ php artisan make:model User -mcr
 ```
 ## Package
 
-⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#templating)
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Templating)](#templating)
 
 - [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
@@ -141,7 +141,7 @@ $user->revokeRoleTo($role); //$role = nama rolenya apa
 
 ## Templating
 
-⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data)](#basis-data)
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data / Database)](#basis-data-database)
 
 - [Html To Pdf](#html-to-pdf)
 
