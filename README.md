@@ -1,7 +1,7 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **8** trik._
+_Berisi: **9** trik._
 
 **Terakhir diupdate 19 Oktober 2020**
 
@@ -14,6 +14,7 @@ _Berisi: **8** trik._
 - [Package](#package) (2 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
+- [Middleware](#Middleware)(1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
@@ -189,7 +190,7 @@ function toPdf($html, $landscape = false)
 
 ## **Basis Data (Database)**
 
-[Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+[Ke Atas](#laravel-trik) ➡️ [Berikutnya (Middleware)](#Middleware)
 
 - [Koneksi Banyak Basis Data (Multiple-connection Database)](#koneksi-banyak-basis-data-multiple-connection-database))
 
@@ -260,6 +261,37 @@ php artisan migrate --database=mysql2
 ```
 
 5. selesai
+
+## Middleware
+
+⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+- [Validasi per menit menggunakan throttle](#Validasi-per-menit-menggunakan-throttle)
+
+### **Validasi per menit menggunakan throttle**
+1. Membuat class middleware menggunakan artisan
+2. Tambahkan Class middleware tadi ke dalam middlewareGroups yang ada di kernel.php
+3. Masuk Ke Web.php. dan Tambahkan Route middleware Group
+`
+	Route::middleware('report', 'throttle:1,1440')->group(function () {
+		Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
+	});
+
+	//'report' -> nama middleware yg sudah terdaftar di kernel
+	//'throttle' -> library untuk Rate Limit
+	//'1,1440' -> 1 kali validasi dalam 24 jam/1440 menit
+`
+**Cara Merubah pesan error throttle**
+1. Masuk ke  `Exceptions/Handler.php`, masukkan kondisi di dalam function render
+`
+	if ($exception instanceof ThrottleRequestsException) {
+            return response()->json(abort(429, 'Upaya Hari Ini Sudah Habis'));
+        }else {
+            return parent::render($request, $exception);            
+        }
+`
+
+
+
 
 
 ## Lain-lain
