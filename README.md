@@ -32,7 +32,7 @@ _Berisi: **9** trik._
 
 Untuk mengubah format `created_at`, tambahkan method berikut di dalam model:
 
-```
+```php
 public function getCreatedAtFormattedAttribute()
 {
    return $this->created_at->format('H:i d, M Y');
@@ -46,7 +46,7 @@ Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 
 Untuk mengubah format `updated_at`, tambahkan method berikut di dalam model:
 
-```
+```php
 public function getUpdatedAtFormattedAttribute()
 {
    return $this->updated_at->format('H:i d, M Y');
@@ -83,12 +83,12 @@ dan untuk  updated_at cukup menambahkan:
 
 Untuk membuat `model`, `controller`, dan `migration` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mc`, seperti berikut :
 
-```
+```php
 php artisan make:model User -mc
 ```
 
 Jika kita ingin membuat `controller` dengan resource (default method dari laravel). Gunakan perintah ini (dengan tambahan huruf `r`):
-```
+```php
 php artisan make:model User -mcr
 ```
 ## Package
@@ -109,7 +109,7 @@ php artisan make:model User -mcr
  `composer require spatie/laravel-permission`
  
 2. edit app/config.php
-```
+```php
 'providers' => [
     // ...
     Spatie\Permission\PermissionServiceProvider::class,
@@ -370,7 +370,7 @@ public function __construct()
 ### **Html To Pdf**
 - Sebuah fungsi untuk mengubah string html menjadi string pdf menggunakan wkhtmltopdf. Fungsi ini tidak menggunakan file sementara apa pun dan tidak bergantung pada plugin. untuk info update silahkan lihat <a href="https://github.com/meertensm/HtmlToPdf">meertensm/HtmlToPdf</a>
 
-```
+```php
 function toPdf($html, $landscape = false)
 {
     
@@ -424,7 +424,7 @@ function toPdf($html, $landscape = false)
 
 1. Tambahkan baris kode ini, di dalam file `.env`.
 
-```
+```php
 DB_CONNECTION2=mysql
 DB_HOST2=127.0.0.1
 DB_PORT2=3306
@@ -436,7 +436,7 @@ DB_PASSWORD2=password kamu
 2. Di dalam file `config/database.php` tambahkan baris kode berikut:
 
 
-```
+```php
  'mysql2' => [
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
@@ -460,7 +460,7 @@ DB_PASSWORD2=password kamu
 
 3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration
 
-```
+```php
   public function up()
     {
         Schema::connection(mysql2)->create('users', function (Blueprint $table) { // <= perhatikan connection nya
@@ -477,7 +477,7 @@ DB_PASSWORD2=password kamu
 
 4. Jalankan migration satu persatu
 
-```
+```php
 php artisan migrate --database=mysql
 php artisan migrate --database=mysql2
 ```
