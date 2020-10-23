@@ -24,6 +24,7 @@ _Berisi: **9** trik._
 - [Cara mengubah format output `created_at` dan `updated_at` lewat model](#cara-mengubah-format-output-created_at-dan-updated_at-lewat-model)
 
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
+---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
 
@@ -76,6 +77,7 @@ dan untuk  updated_at cukup menambahkan:
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Package)](#package)
 
 - [Cara membuat model, controller, migration sekaligus](#cara-membuat-model-controller-migration-sekaligus)
+---
 
 ### **Cara membuat model, controller, migration sekaligus**
 
@@ -363,6 +365,7 @@ public function __construct()
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data / Database)](#basis-data-database)
 
 - [Html To Pdf](#html-to-pdf)
+---
 
 ### **Html To Pdf**
 - Sebuah fungsi untuk mengubah string html menjadi string pdf menggunakan wkhtmltopdf. Fungsi ini tidak menggunakan file sementara apa pun dan tidak bergantung pada plugin. untuk info update silahkan lihat <a href="https://github.com/meertensm/HtmlToPdf">meertensm/HtmlToPdf</a>
@@ -410,7 +413,8 @@ function toPdf($html, $landscape = false)
 
 [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Middleware)](#middleware)
 
-- [Koneksi Banyak Basis Data (Multiple-connection Database)](#koneksi-banyak-basis-data-multiple-connection-database))
+- [Koneksi Banyak Basis Data (Multiple-connection Database)](#koneksi-banyak-basis-data-multiple-connection-database)
+---
 
 ### Koneksi Banyak Basis Data (Multiple-connection Database)
 
@@ -484,6 +488,7 @@ php artisan migrate --database=mysql2
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 - [Validasi per menit menggunakan throttle](#Validasi-per-menit-menggunakan-throttle)
+---
 
 ### **Validasi per menit menggunakan throttle**
 1. Membuat class middleware menggunakan artisan
@@ -542,6 +547,7 @@ Contoh:
 ⬆️ [Ke Atas](#laravel-trik)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+---
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
 
