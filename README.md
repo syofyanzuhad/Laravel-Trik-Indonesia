@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (2 trik).
+- [Package](#package) (3 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -95,6 +95,7 @@ php artisan make:model User -mcr
 
 - [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
+- [Cara Menggunakan Permission](#cara-menggunakan-permission)
 
 ### **Install Spatie Role Permission**
 
@@ -123,21 +124,68 @@ php artisan make:model User -mcr
 
  `php artisan migrate`
 
-### Cara menggunakan Role
+### **Cara menggunakan Role**
 1. membuat role 
-```
+```php
 use Spatie\Permission\Models\Role;
 
 $role = Role::create(['name' => 'writer']);
 ```
 
 2. Menambahkan role kepada user
-```
+```php
 $user->assignRole($role);
 ```
 3. Menghapus role pada user
-```
+```php
 $user->revokeRoleTo($role); //$role = nama rolenya apa
+```
+
+### **Cara Menggunakan Permission**
+
+1. Menambahkan Permission
+```php
+// Adding permissions to a user
+$user->givePermissionTo('edit articles');
+
+// Adding permissions via a role
+$user->assignRole('writer');
+
+$role->givePermissionTo('edit articles');
+
+// You can also give multiple permission at once
+$user->givePermissionTo('edit articles', 'delete articles');
+
+// You may also pass an array
+$user->givePermissionTo(['edit articles', 'delete articles']);
+```
+
+2. Menghapus Permission
+```php
+// A permission can be revoked from a user
+$user->revokePermissionTo('edit articles');
+
+// Or revoke & add new permissions in one go:
+$user->syncPermissions(['edit articles', 'delete articles']);
+```
+
+3. Mengecek Apakah User Mempunyai Permissioin
+```php
+$user->hasPermissionTo('edit articles');
+
+// Or you may pass an integer representing the permission id
+$user->hasPermissionTo('1');
+$user->hasPermissionTo(Permission::find(1)->id);
+$user->hasPermissionTo($somePermission->id);
+
+// You can check if a user has Any of an array of permissions:
+$user->hasAnyPermission(['edit articles', 'publish articles', 'unpublish articles']);
+
+// ...or if a user has All of an array of permissions:
+$user->hasAllPermissions(['edit articles', 'publish articles', 'unpublish articles']);
+
+// You may also pass integers to lookup by permission id
+$user->hasAnyPermission(['edit articles', 1, 5]);
 ```
 
 ## Templating
