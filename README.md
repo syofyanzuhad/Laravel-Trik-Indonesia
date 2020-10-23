@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (5 trik).
+- [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -98,6 +98,7 @@ php artisan make:model User -mcr
 - [Cara Menggunakan Permission](#cara-menggunakan-permission)
 - [Cara Menggunakan Permission Via Role](#cara-menggunakan-permission-via-role)
 - [Cara Menggunakan Spatie di Blade](#cara-menggunakan-spatie-di-blade)
+- [Cara Menggunakan Spatie di Middleware](#cara-menggunakan-spatie-di-middleware)
 ---
 ### **Install Spatie Role Permission**
 
@@ -292,6 +293,71 @@ $user->hasAllRoles(Role::all());
 @endunlessrole
 ```
 
+---
+
+### **Cara Menggunakan Spatie di Middleware**
+1. Tambahkan Kodingan di bawah ini pada **app/Http/Kernel.php**
+```php
+protected $routeMiddleware = [
+    // ...
+    'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+];
+```
+
+2. Cara memvalidasi Route
+```php
+Route::group(['middleware' => ['role:super-admin']], function () {
+    //
+});
+
+Route::group(['middleware' => ['permission:publish articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role:super-admin','permission:publish articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role_or_permission:super-admin|edit articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role_or_permission:publish articles']], function () {
+    //
+});
+```
+
+3. Memvalidasi Route lebih dari satu **role** atau **permission** menggunakan **| (pipa) karakter**
+```php
+Route::group(['middleware' => ['role:super-admin|writer']], function () {
+    //
+});
+
+Route::group(['middleware' => ['permission:publish articles|edit articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role_or_permission:super-admin|edit articles']], function () {
+    //
+});
+```
+
+4. Memvalidasi Middleware di Controller
+
+```php
+public function __construct()
+{
+    $this->middleware(['role:super-admin','permission:publish articles|edit articles']);
+}
+public function __construct()
+{
+    $this->middleware(['role_or_permission:super-admin|edit articles']);
+}
+```
+ ---
+ 
 ## Templating
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data / Database)](#basis-data-database)
