@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (2 trik).
+- [Package](#package) (3 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -141,7 +141,7 @@ $user->assignRole($role);
 $user->revokeRoleTo($role); //$role = nama rolenya apa
 ```
 
-### Cara Menggunakan Permission
+### **Cara Menggunakan Permission**
 
 1. Menambahkan Permission
 ```php
