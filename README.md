@@ -151,27 +151,27 @@ $user->revokeRoleTo($role); //$role = nama rolenya apa
 
 1. Menambahkan Permission
 ```php
-// Adding permissions to a user
+// Tambah permission ke user
 $user->givePermissionTo('edit articles');
 
-// Adding permissions via a role
+// Tambah permission melalui role
 $user->assignRole('writer');
 
 $role->givePermissionTo('edit articles');
 
-// You can also give multiple permission at once
+// Tambahkan role sekaligus
 $user->givePermissionTo('edit articles', 'delete articles');
 
-// You may also pass an array
+// Tambahkan role sekaligus menggunakan array
 $user->givePermissionTo(['edit articles', 'delete articles']);
 ```
 
 2. Menghapus Permission
 ```php
-// A permission can be revoked from a user
+// Hapus permissioin dari user
 $user->revokePermissionTo('edit articles');
 
-// Or revoke & add new permissions in one go:
+// Hapus dan tamabah sekaligus (update)
 $user->syncPermissions(['edit articles', 'delete articles']);
 ```
 
@@ -179,18 +179,18 @@ $user->syncPermissions(['edit articles', 'delete articles']);
 ```php
 $user->hasPermissionTo('edit articles');
 
-// Or you may pass an integer representing the permission id
+// Cek use mengguakan id
 $user->hasPermissionTo('1');
 $user->hasPermissionTo(Permission::find(1)->id);
 $user->hasPermissionTo($somePermission->id);
 
-// You can check if a user has Any of an array of permissions:
+// Periksa user yang mempunya beberapa permission
 $user->hasAnyPermission(['edit articles', 'publish articles', 'unpublish articles']);
 
-// ...or if a user has All of an array of permissions:
+// alterntif lain
 $user->hasAllPermissions(['edit articles', 'publish articles', 'unpublish articles']);
 
-// You may also pass integers to lookup by permission id
+// Periksa user yang mempunya beberapa permission menggunakan integer
 $user->hasAnyPermission(['edit articles', 1, 5]);
 ```
 
@@ -201,9 +201,9 @@ $user->hasAnyPermission(['edit articles', 1, 5]);
 ```php
 $user->assignRole('writer');
 
-// You can also assign multiple roles at once
+// Memberikan role lebih dari satu
 $user->assignRole('writer', 'admin');
-// or as an array
+// alternatif lain menggunakan array
 $user->assignRole(['writer', 'admin']);
 ```
 2. Menghapus Role dari User
@@ -212,20 +212,20 @@ $user->removeRole('writer');
 ```
 3. Update Role dari User
 ```php
-// All current roles will be removed from the user and replaced by the array given
+// Semua role saat ini akan di hapus dari use dan di gantikan dari array yang di berikan
 $user->syncRoles(['writer', 'admin']);
 ```
 4. Memeriksa User mempunyai Role, biasanya di gunakan untuk validasi
 ```php
-// All current roles will be removed from the user and replaced by the array given
+// Semua role saat ini akan di hapus dari use dan di gantikan dari array yang di berikan
 $user->syncRoles(['writer', 'admin']);
 
-// You can also determine if a user has any of a given list of roles:
+// Memeriksa user yang mempunyai beberapa role
 $user->hasAnyRole(['writer', 'reader']);
-// or
+// atau
 $user->hasAnyRole('writer', 'reader');
 
-// You can also determine if a user has all of a given list of roles:
+// Cek jika user punya semua role
 $user->hasAllRoles(Role::all());
 ```
 ---
@@ -235,7 +235,7 @@ $user->hasAllRoles(Role::all());
 @can('edit articles')
   //
 @endcan
-// or
+// atau
 
 @if(auth()->user()->can('edit articles') && $some_other_condition)
   //
@@ -246,50 +246,50 @@ $user->hasAllRoles(Role::all());
 ```php
 // Persiksa sebuah role
 @role('writer')
-    I am a writer!
+    Saya seorang penulis!
 @else
-    I am not a writer...
+    Saya bukan penulis
 @endrole
 // bisa juga menggunakan ini
 @hasrole('writer')
-    I am a writer!
+    Saya seorang penulis!
 @else
-    I am not a writer...
+    Saya bukan penulis
 @endhasrole
 
 
 // Cek beberapa Role 
 @hasanyrole($collectionOfRoles)
-    I have one or more of these roles!
+    Saya punya satu atau lebih dari satu role
 @else
-    I have none of these roles...
+    Saya tidak punya role...
 @endhasanyrole
 // atau
 @hasanyrole('writer|admin')
-    I am either a writer or an admin or both!
+    Saya penulis atau admin atau keudannya!
 @else
-    I have none of these roles...
+    Saya tidak punya role...
 @endhasanyrole
 
 
 // Cek Semua Role
 @hasallroles($collectionOfRoles)
-    I have all of these roles!
+    Saya punya semua role!!
 @else
-    I do not have all of these roles...
+    Saya tidak memiliki semua role...
 @endhasallroles
 // atau
 @hasallroles('writer|admin')
-    I am both a writer and an admin!
+    Saya penulis dan juga admin!!
 @else
-    I do not have all of these roles...
+    Saya tidak memiliki semua role...
 @endhasallroles
 
 // Alternatif lain, @unlessrole 
 @unlessrole('does not have this role')
-    I do not have the role
+   Saya tidak punya role
 @else
-    I do have the role
+    Saya punya role
 @endunlessrole
 ```
 
@@ -357,7 +357,7 @@ public function __construct()
 }
 ```
  ---
- 
+
 ## Templating
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data / Database)](#basis-data-database)
