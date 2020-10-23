@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (4 trik).
+- [Package](#package) (5 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -97,6 +97,7 @@ php artisan make:model User -mcr
 - [Cara Menggunakan Role](#cara-menggunakan-role)
 - [Cara Menggunakan Permission](#cara-menggunakan-permission)
 - [Cara Menggunakan Permission Via Role](#cara-menggunakan-permission-via-role)
+- [Cara Menggunakan Spatie di Blade](#cara-menggunakan-spatie-di-blade)
 ---
 ### **Install Spatie Role Permission**
 
@@ -226,6 +227,71 @@ $user->hasAnyRole('writer', 'reader');
 // You can also determine if a user has all of a given list of roles:
 $user->hasAllRoles(Role::all());
 ```
+---
+### **Cara Menggunakan Spatie di Blade**
+1. Permission pada Blade
+```php
+@can('edit articles')
+  //
+@endcan
+// or
+
+@if(auth()->user()->can('edit articles') && $some_other_condition)
+  //
+@endif
+// Bisa juga menggunakan @can, @cannot, @canany, dan @guest
+```
+2. Role pada Blade
+```php
+// Persiksa sebuah role
+@role('writer')
+    I am a writer!
+@else
+    I am not a writer...
+@endrole
+// bisa juga menggunakan ini
+@hasrole('writer')
+    I am a writer!
+@else
+    I am not a writer...
+@endhasrole
+
+
+// Cek beberapa Role 
+@hasanyrole($collectionOfRoles)
+    I have one or more of these roles!
+@else
+    I have none of these roles...
+@endhasanyrole
+// atau
+@hasanyrole('writer|admin')
+    I am either a writer or an admin or both!
+@else
+    I have none of these roles...
+@endhasanyrole
+
+
+// Cek Semua Role
+@hasallroles($collectionOfRoles)
+    I have all of these roles!
+@else
+    I do not have all of these roles...
+@endhasallroles
+// atau
+@hasallroles('writer|admin')
+    I am both a writer and an admin!
+@else
+    I do not have all of these roles...
+@endhasallroles
+
+// Alternatif lain, @unlessrole 
+@unlessrole('does not have this role')
+    I do not have the role
+@else
+    I do have the role
+@endunlessrole
+```
+
 ## Templating
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data / Database)](#basis-data-database)
