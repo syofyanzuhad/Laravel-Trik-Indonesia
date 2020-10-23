@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (3 trik).
+- [Package](#package) (4 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -96,7 +96,8 @@ php artisan make:model User -mcr
 - [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
 - [Cara Menggunakan Permission](#cara-menggunakan-permission)
-
+- [Cara Menggunakan Permission Via Role](#cara-menggunakan-permission-via-role)
+---
 ### **Install Spatie Role Permission**
 
 1. Install package
@@ -124,6 +125,8 @@ php artisan make:model User -mcr
 
  `php artisan migrate`
 
+---
+
 ### **Cara menggunakan Role**
 1. membuat role 
 ```php
@@ -140,6 +143,7 @@ $user->assignRole($role);
 ```php
 $user->revokeRoleTo($role); //$role = nama rolenya apa
 ```
+---
 
 ### **Cara Menggunakan Permission**
 
@@ -188,6 +192,40 @@ $user->hasAllPermissions(['edit articles', 'publish articles', 'unpublish articl
 $user->hasAnyPermission(['edit articles', 1, 5]);
 ```
 
+---
+
+### **Cara Menggunakan Permission Via Role**
+1. Menerapkan Role ke User manapun
+```php
+$user->assignRole('writer');
+
+// You can also assign multiple roles at once
+$user->assignRole('writer', 'admin');
+// or as an array
+$user->assignRole(['writer', 'admin']);
+```
+2. Menghapus Role dari User
+```php
+$user->removeRole('writer');
+```
+3. Update Role dari User
+```php
+// All current roles will be removed from the user and replaced by the array given
+$user->syncRoles(['writer', 'admin']);
+```
+4. Memeriksa User mempunyai Role, biasanya di gunakan untuk validasi
+```php
+// All current roles will be removed from the user and replaced by the array given
+$user->syncRoles(['writer', 'admin']);
+
+// You can also determine if a user has any of a given list of roles:
+$user->hasAnyRole(['writer', 'reader']);
+// or
+$user->hasAnyRole('writer', 'reader');
+
+// You can also determine if a user has all of a given list of roles:
+$user->hasAllRoles(Role::all());
+```
 ## Templating
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Basis Data / Database)](#basis-data-database)
