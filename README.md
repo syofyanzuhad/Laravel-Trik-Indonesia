@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (3 trik).
+- [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -96,7 +96,10 @@ php artisan make:model User -mcr
 - [Install Spatie Role Permission](#install-spatie-role-permission)
 - [Cara Menggunakan Role](#cara-menggunakan-role)
 - [Cara Menggunakan Permission](#cara-menggunakan-permission)
-
+- [Cara Menggunakan Permission Via Role](#cara-menggunakan-permission-via-role)
+- [Cara Menggunakan Spatie di Blade](#cara-menggunakan-spatie-di-blade)
+- [Cara Menggunakan Spatie di Middleware](#cara-menggunakan-spatie-di-middleware)
+---
 ### **Install Spatie Role Permission**
 
 1. Install package
@@ -124,6 +127,8 @@ php artisan make:model User -mcr
 
  `php artisan migrate`
 
+---
+
 ### **Cara menggunakan Role**
 1. membuat role 
 ```php
@@ -140,32 +145,33 @@ $user->assignRole($role);
 ```php
 $user->revokeRoleTo($role); //$role = nama rolenya apa
 ```
+---
 
 ### **Cara Menggunakan Permission**
 
 1. Menambahkan Permission
 ```php
-// Adding permissions to a user
+// Tambah permission ke user
 $user->givePermissionTo('edit articles');
 
-// Adding permissions via a role
+// Tambah permission melalui role
 $user->assignRole('writer');
 
 $role->givePermissionTo('edit articles');
 
-// You can also give multiple permission at once
+// Tambahkan role sekaligus
 $user->givePermissionTo('edit articles', 'delete articles');
 
-// You may also pass an array
+// Tambahkan role sekaligus menggunakan array
 $user->givePermissionTo(['edit articles', 'delete articles']);
 ```
 
 2. Menghapus Permission
 ```php
-// A permission can be revoked from a user
+// Hapus permissioin dari user
 $user->revokePermissionTo('edit articles');
 
-// Or revoke & add new permissions in one go:
+// Hapus dan tamabah sekaligus (update)
 $user->syncPermissions(['edit articles', 'delete articles']);
 ```
 
@@ -173,20 +179,184 @@ $user->syncPermissions(['edit articles', 'delete articles']);
 ```php
 $user->hasPermissionTo('edit articles');
 
-// Or you may pass an integer representing the permission id
+// Cek use mengguakan id
 $user->hasPermissionTo('1');
 $user->hasPermissionTo(Permission::find(1)->id);
 $user->hasPermissionTo($somePermission->id);
 
-// You can check if a user has Any of an array of permissions:
+// Periksa user yang mempunya beberapa permission
 $user->hasAnyPermission(['edit articles', 'publish articles', 'unpublish articles']);
 
-// ...or if a user has All of an array of permissions:
+// alterntif lain
 $user->hasAllPermissions(['edit articles', 'publish articles', 'unpublish articles']);
 
-// You may also pass integers to lookup by permission id
+// Periksa user yang mempunya beberapa permission menggunakan integer
 $user->hasAnyPermission(['edit articles', 1, 5]);
 ```
+
+---
+
+### **Cara Menggunakan Permission Via Role**
+1. Menerapkan Role ke User manapun
+```php
+$user->assignRole('writer');
+
+// Memberikan role lebih dari satu
+$user->assignRole('writer', 'admin');
+// alternatif lain menggunakan array
+$user->assignRole(['writer', 'admin']);
+```
+2. Menghapus Role dari User
+```php
+$user->removeRole('writer');
+```
+3. Update Role dari User
+```php
+// Semua role saat ini akan di hapus dari use dan di gantikan dari array yang di berikan
+$user->syncRoles(['writer', 'admin']);
+```
+4. Memeriksa User mempunyai Role, biasanya di gunakan untuk validasi
+```php
+// Semua role saat ini akan di hapus dari use dan di gantikan dari array yang di berikan
+$user->syncRoles(['writer', 'admin']);
+
+// Memeriksa user yang mempunyai beberapa role
+$user->hasAnyRole(['writer', 'reader']);
+// atau
+$user->hasAnyRole('writer', 'reader');
+
+// Cek jika user punya semua role
+$user->hasAllRoles(Role::all());
+```
+---
+### **Cara Menggunakan Spatie di Blade**
+1. Permission pada Blade
+```php
+@can('edit articles')
+  //
+@endcan
+// atau
+
+@if(auth()->user()->can('edit articles') && $some_other_condition)
+  //
+@endif
+// Bisa juga menggunakan @can, @cannot, @canany, dan @guest
+```
+2. Role pada Blade
+```php
+// Persiksa sebuah role
+@role('writer')
+    Saya seorang penulis!
+@else
+    Saya bukan penulis
+@endrole
+// bisa juga menggunakan ini
+@hasrole('writer')
+    Saya seorang penulis!
+@else
+    Saya bukan penulis
+@endhasrole
+
+
+// Cek beberapa Role 
+@hasanyrole($collectionOfRoles)
+    Saya punya satu atau lebih dari satu role
+@else
+    Saya tidak punya role...
+@endhasanyrole
+// atau
+@hasanyrole('writer|admin')
+    Saya penulis atau admin atau keudannya!
+@else
+    Saya tidak punya role...
+@endhasanyrole
+
+
+// Cek Semua Role
+@hasallroles($collectionOfRoles)
+    Saya punya semua role!!
+@else
+    Saya tidak memiliki semua role...
+@endhasallroles
+// atau
+@hasallroles('writer|admin')
+    Saya penulis dan juga admin!!
+@else
+    Saya tidak memiliki semua role...
+@endhasallroles
+
+// Alternatif lain, @unlessrole 
+@unlessrole('does not have this role')
+   Saya tidak punya role
+@else
+    Saya punya role
+@endunlessrole
+```
+
+---
+
+### **Cara Menggunakan Spatie di Middleware**
+1. Tambahkan Kodingan di bawah ini pada **app/Http/Kernel.php**
+```php
+protected $routeMiddleware = [
+    // ...
+    'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+];
+```
+
+2. Cara memvalidasi Route
+```php
+Route::group(['middleware' => ['role:super-admin']], function () {
+    //
+});
+
+Route::group(['middleware' => ['permission:publish articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role:super-admin','permission:publish articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role_or_permission:super-admin|edit articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role_or_permission:publish articles']], function () {
+    //
+});
+```
+
+3. Memvalidasi Route lebih dari satu **role** atau **permission** menggunakan **| (pipa) karakter**
+```php
+Route::group(['middleware' => ['role:super-admin|writer']], function () {
+    //
+});
+
+Route::group(['middleware' => ['permission:publish articles|edit articles']], function () {
+    //
+});
+
+Route::group(['middleware' => ['role_or_permission:super-admin|edit articles']], function () {
+    //
+});
+```
+
+4. Memvalidasi Middleware di Controller
+
+```php
+public function __construct()
+{
+    $this->middleware(['role:super-admin','permission:publish articles|edit articles']);
+}
+public function __construct()
+{
+    $this->middleware(['role_or_permission:super-admin|edit articles']);
+}
+```
+ ---
 
 ## Templating
 
