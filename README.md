@@ -3,7 +3,7 @@ Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **9** trik._
 
-**Terakhir diupdate 20 Oktober 2020**
+**Terakhir diupdate 25 Oktober 2020**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
@@ -11,7 +11,7 @@ _Berisi: **9** trik._
 
 - [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
-- [Package](#package) (6 trik).
+- [Package](#package) (7 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
@@ -101,6 +101,7 @@ php artisan make:model User -mcr
 - [Cara Menggunakan Permission Via Role](#cara-menggunakan-permission-via-role)
 - [Cara Menggunakan Spatie di Blade](#cara-menggunakan-spatie-di-blade)
 - [Cara Menggunakan Spatie di Middleware](#cara-menggunakan-spatie-di-middleware)
+- [Scaffolding Menggunakan Jetstream](#scaffolding-menggunakan-jetstream)
 ---
 ### **Install Spatie Role Permission**
 
@@ -359,6 +360,55 @@ public function __construct()
 }
 ```
  ---
+ 
+ - [Scaffolding Menggunakan Jetstream](#scaffolding-menggunakan-jetstream)
+ 
+### Laravel8 Auth Scaffolding dengan jetstream
+
+1 install laravel dengan ditambahkan --jet di akhir nama project
+
+```
+laravel new project-name --jet
+```
+
+ketik 0 lalu enter jika ingin menggunakan livewire
+keitk 1 lalu enter jika ingin menggunakna inertia
+
+setelah instalasi selesai, atur file .env lalu jalankan perintah
+
+```
+php artisan migrate
+```
+
+installasi selesai, jika sudah terlajur install laravel tanpa --jet di akhir, bisa gunakan composer
+
+2 alternatif install package laravel jetstream melalui composer
+
+```
+composer require laravel/jetstream
+```
+
+3 jika ingin menggunakan livewire gunakan perintah berikut
+
+```
+php artisan jetstream:install livewire --teams
+```
+
+atau juga bisa menggunakan inertia dengan perintah
+
+```
+php artisan jetstream:install inertia --teams
+```
+
+4 Setelah menginstal Jetstream, Anda harus menginstal dan membangun dependensi NPM Anda dan memigrasi database Anda:
+
+```
+npm install && npm run dev
+
+php artisan migrate
+```
+installasi selesai.
+untuk 
 
 ## Templating
 
