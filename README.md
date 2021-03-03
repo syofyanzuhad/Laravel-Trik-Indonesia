@@ -1,9 +1,9 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **9** trik._
+_Berisi: **14** trik._
 
-**Terakhir diupdate 20 Oktober 2020**
+**Terakhir diupdate 04 Maret 2021**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
@@ -15,7 +15,7 @@ _Berisi: **9** trik._
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
-- [Lain - lain](#lain-lain) (1 trik).
+- [Lain - lain](#lain-lain) (2 trik).
 
 ## DB Models dan Eloquent
 
@@ -574,6 +574,8 @@ Yang benar adalah seperti ini:
     
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+
+---
 
 ### **Penulisan where dengan whereKolom**
 
