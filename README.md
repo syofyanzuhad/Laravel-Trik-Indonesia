@@ -547,6 +547,7 @@ Contoh:
 ⬆️ [Ke Atas](#laravel-trik)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+- [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
 ---
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
@@ -574,4 +575,16 @@ Yang benar adalah seperti ini:
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
+### **Penulisan where dengan whereKolom**
 
+- **where**
+
+Biasanya kita menulis seperti ini:
+
+    ->where('kolom', 'nilai')
+
+- **whereKolom**
+
+Sebenarnya kita juga bisa menuliskan seperti ini:
+
+    ->whereKolom('nilai')
