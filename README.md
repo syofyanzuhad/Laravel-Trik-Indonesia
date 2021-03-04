@@ -606,3 +606,4 @@ atau:
 dan:
 
     $users = User::whereIdAndNama(1, 'namauser')->get();
+
