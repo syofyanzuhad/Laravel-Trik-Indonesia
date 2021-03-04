@@ -581,12 +581,28 @@ Yang benar adalah seperti ini:
 
 - **where**
 
-Biasanya kita menulis seperti ini:
+Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
 
-    ->where('kolom', 'nilai')
+    $users = User::where('id', 1)->get();
+
+atau kita mau menampilkan data berdasarkan `nama`:
+
+    $users = User::where('nama', 'namauser')->get();
+
+dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
+
+     $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
 
 - **whereKolom**
 
-Sebenarnya kita juga bisa menuliskan seperti ini:
+Sebenarnya kita juga bisa menuliskannya seperti ini:
 
-    ->whereKolom('nilai')
+    $users = User::whereId(1)->get();
+
+atau:
+
+     $users = User::whereNama('namauser')->get();
+
+dan:
+
+    $users = User::whereIdAndNama(1, 'namauser')->get();
