@@ -1,15 +1,15 @@
 # Laravel Trik
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **9** trik._
+_Berisi: **14** trik._
 
-**Terakhir diupdate 20 Oktober 2020**
+**Terakhir diupdate 04 Maret 2021**
 
 > Berikan pull request untuk memberikan manfaat lebih banyak !
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (3 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
@@ -24,6 +24,8 @@ _Berisi: **9** trik._
 - [Cara mengubah format output `created_at` dan `updated_at` lewat model](#cara-mengubah-format-output-created_at-dan-updated_at-lewat-model)
 
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
+
+- [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
 ---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
@@ -72,6 +74,36 @@ dan untuk  updated_at cukup menambahkan:
 
     const UPDATED_AT = 'tgl_diupdate';
 
+### [Penulisan where dengan whereKolom](#penulisan-where-dengan-wherekolom)
+
+- **where**
+
+Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
+
+    $users = User::where('id', 1)->get();
+
+atau kita mau menampilkan data berdasarkan `nama`:
+
+    $users = User::where('nama', 'namauser')->get();
+
+dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
+
+     $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
+
+- **whereKolom**
+
+Sebenarnya kita juga bisa menuliskannya seperti ini:
+
+    $users = User::whereId(1)->get();
+
+atau:
+
+     $users = User::whereNama('namauser')->get();
+
+dan:
+
+    $users = User::whereIdAndNama(1, 'namauser')->get();
+
 ## Perintah `artisan`
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Package)](#package)
@@ -91,6 +123,7 @@ Jika kita ingin membuat `controller` dengan resource (default method dari larave
 ```php
 php artisan make:model User -mcr
 ```
+
 ## Package
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Templating)](#templating)
@@ -574,4 +607,4 @@ Yang benar adalah seperti ini:
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
-
+---
