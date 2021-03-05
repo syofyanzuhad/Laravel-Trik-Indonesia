@@ -9,13 +9,13 @@ _Berisi: **14** trik._
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (2 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (3 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
-- [Lain - lain](#lain-lain) (2 trik).
+- [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
 
@@ -24,6 +24,8 @@ _Berisi: **14** trik._
 - [Cara mengubah format output `created_at` dan `updated_at` lewat model](#cara-mengubah-format-output-created_at-dan-updated_at-lewat-model)
 
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
+
+- [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
 ---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
@@ -72,6 +74,36 @@ dan untuk  updated_at cukup menambahkan:
 
     const UPDATED_AT = 'tgl_diupdate';
 
+### [Penulisan where dengan whereKolom](#penulisan-where-dengan-wherekolom)
+
+- **where**
+
+Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
+
+    $users = User::where('id', 1)->get();
+
+atau kita mau menampilkan data berdasarkan `nama`:
+
+    $users = User::where('nama', 'namauser')->get();
+
+dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
+
+     $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
+
+- **whereKolom**
+
+Sebenarnya kita juga bisa menuliskannya seperti ini:
+
+    $users = User::whereId(1)->get();
+
+atau:
+
+     $users = User::whereNama('namauser')->get();
+
+dan:
+
+    $users = User::whereIdAndNama(1, 'namauser')->get();
+
 ## Perintah `artisan`
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Package)](#package)
@@ -91,6 +123,7 @@ Jika kita ingin membuat `controller` dengan resource (default method dari larave
 ```php
 php artisan make:model User -mcr
 ```
+
 ## Package
 
 ⬆️ [Ke Atas](#laravel-trik) ➡️ [Berikutnya (Templating)](#templating)
@@ -547,7 +580,6 @@ Contoh:
 ⬆️ [Ke Atas](#laravel-trik)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
-- [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
 ---
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
@@ -576,34 +608,3 @@ Yang benar adalah seperti ini:
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 ---
-
-### **Penulisan where dengan whereKolom**
-
-- **where**
-
-Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
-
-    $users = User::where('id', 1)->get();
-
-atau kita mau menampilkan data berdasarkan `nama`:
-
-    $users = User::where('nama', 'namauser')->get();
-
-dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
-
-     $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
-
-- **whereKolom**
-
-Sebenarnya kita juga bisa menuliskannya seperti ini:
-
-    $users = User::whereId(1)->get();
-
-atau:
-
-     $users = User::whereNama('namauser')->get();
-
-dan:
-
-    $users = User::whereIdAndNama(1, 'namauser')->get();
-
