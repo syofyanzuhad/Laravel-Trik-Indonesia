@@ -108,20 +108,20 @@ dan:
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Package)](#package)
 
-- [Cara membuat model, controller, migration sekaligus](#cara-membuat-model-controller-migration-sekaligus)
+- [Cara membuat model, controller, migration, factory sekaligus](#cara-membuat-model-controller-migration-factory-sekaligus)
 ---
 
-### **Cara membuat model, controller, migration sekaligus**
+### **Cara membuat model, controller, migration, factory sekaligus**
 
-Untuk membuat `model`, `controller`, dan `migration` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mc`, seperti berikut :
+Untuk membuat `model`, `controller`,`migration`, dan `factory` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mcf`, seperti berikut :
 
 ```php
-php artisan make:model User -mc
+php artisan make:model User -mcf
 ```
 
 Jika kita ingin membuat `controller` dengan resource (default method dari laravel). Gunakan perintah ini (dengan tambahan huruf `r`):
 ```php
-php artisan make:model User -mcr
+php artisan make:model User -mcrf
 ```
 
 ## Package
