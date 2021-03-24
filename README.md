@@ -3,7 +3,7 @@ Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **15** trik._
 
-**Terakhir diupdate 24 Maret 2021**
+**Terakhir diupdate 25 Maret 2021**
 
 > ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -15,7 +15,8 @@ _Berisi: **15** trik._
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
-- [Lain - lain](#lain-lain) (2 trik).
+- [Routing](#routing) (1 trik).
+- [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
 
@@ -525,7 +526,7 @@ php artisan migrate --database=mysql2
 
 ## Middleware
 
-⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Routing)](#routing)
 - [Validasi per menit menggunakan throttle](#Validasi-per-menit-menggunakan-throttle)
 ---
 
@@ -582,37 +583,10 @@ Contoh:
 	}
 
 
-## Lain-lain
-⬆️ [Ke Atas](#laravel-trik-indonesia)
+## Routing
 
-- [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
 - [Route model binding](#Route-Model-Binding)
----
-
-### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
-
-- **if-else**
-
-Penulisan singkat if-else yaitu: 
-
-    $role = 0;
-    echo $role == 0 ? 'Admin' : 'Pengunjung';
-
-- **if-elseif-else**
-
-**Hindari** penulisan seperti ini: 
-
-> $role = 0;
-
-> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
-	
-Jika mengikuti penulisan di atas maka akan muncul pesan error
-**`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
-
-Yang benar adalah seperti ini:
-    
-    $role = 0;
-    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 ---
 
@@ -649,5 +623,39 @@ class BookController {
 ```
 
 Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terlebih dahulu sebelum menampilkan data.
+
+---
+
+## Lain-lain
+⬆️ [Ke Atas](#laravel-trik-indonesia)
+
+- [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+
+---
+
+### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
+
+- **if-else**
+
+Penulisan singkat if-else yaitu: 
+
+    $role = 0;
+    echo $role == 0 ? 'Admin' : 'Pengunjung';
+
+- **if-elseif-else**
+
+**Hindari** penulisan seperti ini: 
+
+> $role = 0;
+
+> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
+	
+Jika mengikuti penulisan di atas maka akan muncul pesan error
+**`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
+
+Yang benar adalah seperti ini:
+    
+    $role = 0;
+    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 ---
