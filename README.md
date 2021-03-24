@@ -608,3 +608,39 @@ Yang benar adalah seperti ini:
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 ---
+
+### **Route Model Binding**
+
+Untuk mencari data berdasarkan id / kolom lain pada suatu table kita bisa menggunakan route model binding yang disediakan laravel. Misalnya : 
+
+```
+//Route
+Route::get('book/{book}', 'BookController@show');
+
+//Controller
+class BookController {
+     public function show (Book $book){
+           return $book;
+     }
+}
+```
+
+Kode diatas akan menampilkan data buku sesuai dengan id yang dituliskan sebagai parameternya.
+
+Kita juga bisa mencari data berdasarkan kolom yang lain misalnya kolom slug dengan mengubah route menjadi : 
+
+```
+//Route => tambahkan {:nama_kolom} setelah nama model book
+Route::get('book/{book:slug}', 'BookController@show');
+
+//Controller => akan menampilkan data berdasarkan slugnya tanpa query where
+class BookController {
+     public function show (Book $book){
+           return $book;
+     }
+}
+```
+
+Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terlebih dahulu sebelum menampilkan data.
+
+---
