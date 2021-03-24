@@ -108,7 +108,7 @@ dan:
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Package)](#package)
 
-- [Cara membuat model, controller, migration sekaligus](#cara-membuat-model-controller-migration-factory-sekaligus)
+- [Cara membuat model, controller, migration, factory sekaligus](#cara-membuat-model-controller-migration-factory-sekaligus)
 ---
 
 ### **Cara membuat model, controller, migration, factory sekaligus**
