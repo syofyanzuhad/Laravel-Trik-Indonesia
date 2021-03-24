@@ -1,9 +1,9 @@
 # Laravel Trik Indonesia
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **14** trik._
+_Berisi: **15** trik._
 
-**Terakhir diupdate 04 Maret 2021**
+**Terakhir diupdate 24 Maret 2021**
 
 > ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -15,7 +15,7 @@ _Berisi: **14** trik._
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
-- [Lain - lain](#lain-lain) (1 trik).
+- [Lain - lain](#lain-lain) (2 trik).
 
 ## DB Models dan Eloquent
 
@@ -580,6 +580,7 @@ Contoh:
 ⬆️ [Ke Atas](#laravel-trik-indonesia)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+- [Route model binding](#Route-Model-Binding)
 ---
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
