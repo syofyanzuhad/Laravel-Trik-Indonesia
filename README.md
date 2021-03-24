@@ -24,7 +24,7 @@ _Berisi: **15** trik._
 - [Cara mengubah format output `created_at` dan `updated_at` lewat model](#cara-mengubah-format-output-created_at-dan-updated_at-lewat-model)
 
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
-
+`model`, `controller`,`migration`, `factory`, dan `seeder`
 - [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
 ---
 
@@ -108,7 +108,7 @@ dan:
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Package)](#package)
 
-- [Cara membuat model, controller, migration, factory, seeder sekaligus](#cara-membuat-model-controller-migration-factory-sekaligus)
+- [Cara membuat model, controller, migration, factory, seeder sekaligus](#cara-membuat-model-controller-migration-factory-seeder-sekaligus)
 ---
 
 ### **Cara membuat model, controller, migration, factory, seeder sekaligus**
