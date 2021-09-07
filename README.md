@@ -5,7 +5,9 @@ _Berisi: **15** trik._
 
 **Terakhir diupdate 25 Maret 2021**
 
-> ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
+### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
+
+> _inspired by: [LaravelDaily](https://github.com/LaravelDaily/laravel-tips)_
 
 # Daftar Isi :
 
