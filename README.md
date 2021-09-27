@@ -3,7 +3,7 @@ Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **15** trik._
 
-**Terakhir diupdate 25 Maret 2021**
+**Terakhir diupdate 27 September 2021**
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -11,7 +11,7 @@ _Berisi: **15** trik._
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (3 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (4 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
@@ -27,8 +27,10 @@ _Berisi: **15** trik._
 - [Cara mengubah format output `created_at` dan `updated_at` lewat model](#cara-mengubah-format-output-created_at-dan-updated_at-lewat-model)
 
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
-`model`, `controller`,`migration`, `factory`, dan `seeder`
+
 - [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
+
+- [Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot](#cara-otomatis-mengisi-kolom-created_at-dan-updated_at-pada-tabel-pivot)
 ---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
@@ -77,7 +79,7 @@ dan untuk  updated_at cukup menambahkan:
 
     const UPDATED_AT = 'tgl_diupdate';
 
-### [Penulisan where dengan whereKolom](#penulisan-where-dengan-wherekolom)
+### Penulisan where dengan whereKolom
 
 - **where**
 
@@ -106,6 +108,24 @@ atau:
 dan:
 
     $users = User::whereIdAndNama(1, 'namauser')->get();
+    
+### **Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot**
+
+Sebelumnya, jika kita ingin mengisi tabel pivot. Kita bisa menggunakan method `sync()` seperti contoh dibawah ini:
+```php
+   public function store() {
+      ...
+      $user->roles()->sync([1, 2, 3]);
+      ...
+   }
+```
+dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel `role_user`. Jika kita ingin menggunakan `created_at` dan `updated_at` pada tabel pivotnya yaitu `role_user`, maka kita perlu menambahkan method `->withTimestamps()` pada relasi model `User.php` seperti di bawah ini:
+```php
+    public function role()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+```
 
 ## Perintah `artisan`
 
