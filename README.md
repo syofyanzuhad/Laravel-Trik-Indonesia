@@ -1,9 +1,9 @@
 # Laravel Trik Indonesia
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **16** trik._
+_Berisi: **17** trik._
 
-**Terakhir diupdate 27 September 2021**
+**Terakhir diupdate 2 Oktober 2021**
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -11,7 +11,7 @@ _Berisi: **16** trik._
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (4 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (5 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
@@ -31,6 +31,9 @@ _Berisi: **16** trik._
 - [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
 
 - [Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot](#cara-otomatis-mengisi-kolom-created_at-dan-updated_at-pada-tabel-pivot)
+
+
+- [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah**)
 ---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
@@ -125,6 +128,21 @@ dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel 
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
+```    
+
+### **Cara membuat fillable di seluruh fieldnya pada model dengan mudah**
+
+Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat dimasukin data pada array `$fillable` di modelnya. Jika kita ingin menambahkan fillable ke model, kita dapat menambahkan field table kita ke dalam array fillable di modelnya, seperti berikut:
+```php
+   protected $fillable = [
+        'nama', 'email', 'password', 'alamat', 'hobi'
+   ];
+```
+Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabelnya banyak dan kita memiliki kebutuhan untuk fieldnya dapat diisi semua, maka kita harus memasukkan seluruh fieldnya ke dalam array `$fillable` dan itu membuat kode menjadi banyak dan tentunya tidak efektif, karena apa? Jika kita menambahkan field baru, kita harus menambahkan field baru tersebut ke dalam array `$fillable` lagi. Jadi untuk memangkas kode tersebut, kita dapat memanfaatkan fitur `$guarded` pada model. Singkatnya `$guarded` ini memiliki fungsi kebalikan dari `$fillable`, jika `$fillable` adalah list dari field yang dapat dimasukin data, `$guarded` ini adalah list field yang tidak boleh dimasukin data. Jadi simplenya kita tinggal menggunakan fitur dari `$guarded` ini lalu mengisinya dengan array kosong, yang artinya kita memberikan akses untuk seluruh masukan data ke dalam field dari model. Untuk kodenya seperti di bawah ini :
+
+
+```php
+   protected $guarded = [];
 ```
 
 ## Perintah `artisan`
