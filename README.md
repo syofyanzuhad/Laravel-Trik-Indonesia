@@ -1,7 +1,7 @@
 # Laravel Trik Indonesia
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **17** trik._
+_Berisi: **18** trik._
 
 **Terakhir diupdate 2 Oktober 2021**
 
@@ -11,7 +11,7 @@ _Berisi: **17** trik._
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (5 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (6 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
@@ -32,8 +32,11 @@ _Berisi: **17** trik._
 
 - [Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot](#cara-otomatis-mengisi-kolom-created_at-dan-updated_at-pada-tabel-pivot)
 
+- [Menuliskan query where menggunakan 'LocalQueryScope'](#menuliskan-query-where-menggunakan-localqueryscope)
 
 - [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah**)
+
+
 ---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
@@ -128,7 +131,57 @@ dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel 
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
-```    
+```
+
+### **Menuliskan query where menggunakan `LocalQueryScope`**
+
+Misal anda mempunyai model `User` lalu anda ingin mengambil data user dengan role 'admin' atau 'member'. Kita bisa saja menulis seperti ini
+
+```php
+    User::where('role', 'admin')->get();
+
+    User::where('role', 'member')->get();
+```
+
+Dengan QueryScope, penulisan where diatas akan lebih mudah dibaca oleh kita sebagai developer.
+
+Pada model User, tambahkan fungsi seperti ini:
+
+```php
+    public function scopeIsAdmin($query) {
+        return $query->where('role', 'admin');
+    }
+
+    public function scopeIsMember($query) {
+        return $query->where('role', 'member');
+    }
+```
+
+Kita membuat fungsi diatas harus dengan prefix (awalan) "scope" lalu sisanya kita beri nama fungsi bebas dengan format sisanya 'PascalCase'
+
+Lalu kita tinggal panggil seperti ini
+
+```php
+    User::isAdmin()->get();
+
+    User::isMember()->get();
+```
+
+Perlu diingat untuk pemanggilan fungsinya menggunaka format 'camelCase'.
+
+Atau lebih kerennya kita bisa membuat queryscopenya dinamis.
+
+```php
+    public function scopeRole($query, $role) {
+        return $query->where('role', $role);
+    }
+
+    // Pemanggilan
+
+    User::role('admin')->get();
+    // Atau
+    User::role('member')->get();
+```
 
 ### **Cara membuat fillable di seluruh fieldnya pada model dengan mudah**
 
@@ -145,6 +198,7 @@ Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabeln
    protected $guarded = [];
 ```
 
+---
 ## Perintah `artisan`
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Package)](#package)
