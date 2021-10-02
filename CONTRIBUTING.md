@@ -13,15 +13,15 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
    - Terakhir diupdate.
    - Daftar Isi.
    - Tulis trik sesuai dengan contoh yang ada atau format di bawah ini:
-   - Judul: `[Judul tulisan yang ingin dibuat](#judul-tulisan-yang-ingin-dibuat)`
-   - Isi: 
-```
-### ***Judul Tulisan Yang Ingin Dibuat***
-Disini berisi penjelasan mengenai cara menggunakan triknya.
-1. langkah satu
-2. langkah dua
-dst.
-```
+     - Judul: `- [Judul tulisan yang ingin dibuat](#judul-tulisan-yang-ingin-dibuat)`
+     - Isi: 
+      ```
+      ### ***Judul Tulisan Yang Ingin Dibuat***
+      Disini berisi penjelasan mengenai cara menggunakan triknya.
+      1. langkah satu
+      2. langkah dua
+      dst.
+      ```
 
 ## Sekian
 Semoga bermanfaat.
