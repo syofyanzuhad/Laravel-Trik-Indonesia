@@ -3,7 +3,7 @@ Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
 _Berisi: **18** trik._
 
-**Terakhir diupdate 2 Oktober 2021**
+**Terakhir diupdate 02 Oktober 2021**
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -34,7 +34,7 @@ _Berisi: **18** trik._
 
 - [Menuliskan query where menggunakan 'LocalQueryScope'](#menuliskan-query-where-menggunakan-localqueryscope)
 
-- [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah**)
+- [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah)
 
 
 ---
@@ -185,14 +185,16 @@ Atau lebih kerennya kita bisa membuat queryscopenya dinamis.
 
 ### **Cara membuat fillable di seluruh fieldnya pada model dengan mudah**
 
-Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat dimasukin data pada array `$fillable` di modelnya. Jika kita ingin menambahkan fillable ke model, kita dapat menambahkan field table kita ke dalam array fillable di modelnya, seperti berikut:
+Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat diisi data pada array `$fillable` di modelnya. Jika kita ingin menambahkan property `fillable` ke model, kita dapat menambahkan field dari table kita ke dalam array fillable di modelnya, seperti berikut:
 ```php
    protected $fillable = [
         'nama', 'email', 'password', 'alamat', 'hobi'
    ];
 ```
-Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabelnya banyak dan kita memiliki kebutuhan untuk fieldnya dapat diisi semua, maka kita harus memasukkan seluruh fieldnya ke dalam array `$fillable` dan itu membuat kode menjadi banyak dan tentunya tidak efektif, karena apa? Jika kita menambahkan field baru, kita harus menambahkan field baru tersebut ke dalam array `$fillable` lagi. Jadi untuk memangkas kode tersebut, kita dapat memanfaatkan fitur `$guarded` pada model. Singkatnya `$guarded` ini memiliki fungsi kebalikan dari `$fillable`, jika `$fillable` adalah list dari field yang dapat dimasukin data, `$guarded` ini adalah list field yang tidak boleh dimasukin data. Jadi simplenya kita tinggal menggunakan fitur dari `$guarded` ini lalu mengisinya dengan array kosong, yang artinya kita memberikan akses untuk seluruh masukan data ke dalam field dari model. Untuk kodenya seperti di bawah ini :
+Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabelnya banyak dan kita memiliki kebutuhan untuk fieldnya dapat diisi semua, maka kita harus memasukkan seluruh fieldnya ke dalam array `$fillable` dan itu membuat kode menjadi banyak dan tentunya tidak efektif, karena apa? Jika kita menambahkan field baru, kita harus menambahkan field baru tersebut ke dalam array `$fillable` lagi.
 
+Jadi untuk memangkas kode tersebut, kita dapat memanfaatkan fitur `$guarded` pada model. Singkatnya `$guarded` ini memiliki fungsi kebalikan dari `$fillable`, jika `$fillable` adalah list dari field yang dapat diisi data, `$guarded` ini adalah list field yang tidak boleh diisi data. Jadi simplenya kita tinggal menggunakan fitur dari `$guarded` ini lalu mengisinya dengan array kosong, yang artinya kita memberikan akses untuk seluruh masukan data ke dalam field dari model. 
+Untuk kodenya seperti di bawah ini :
 
 ```php
    protected $guarded = [];
