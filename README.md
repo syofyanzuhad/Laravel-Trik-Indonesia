@@ -134,7 +134,7 @@ dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel 
 
 ### **Menuliskan query where menggunakan `LocalQueryScope`**
 
-Misal anda mempunyai model `User` lalu anda ingin user dengan role 'admin' atau 'member'. Kita bisa saja menulis seperti ini
+Misal anda mempunyai model `User` lalu anda ingin mengambil data user dengan role 'admin' atau 'member'. Kita bisa saja menulis seperti ini
 
 ```php
     User::where('role', 'admin')->get();
@@ -144,7 +144,7 @@ Misal anda mempunyai model `User` lalu anda ingin user dengan role 'admin' atau 
 
 Dengan QueryScope, penulisan where diatas akan lebih mudah dibaca oleh kita sebagai developer.
 
-Pada model User, tambahkan fungsi seperti ini
+Pada model User, tambahkan fungsi seperti ini:
 
 ```php
     public function scopeIsAdmin($query) {
@@ -156,7 +156,7 @@ Pada model User, tambahkan fungsi seperti ini
     }
 ```
 
-Kita membuat fungsi diatas harus dengan prefix "scope" lalu sisanya kita beri nama fungsi bebas dengan format sisanya 'PascalCase'
+Kita membuat fungsi diatas harus dengan prefix (awalan) "scope" lalu sisanya kita beri nama fungsi bebas dengan format sisanya 'PascalCase'
 
 Lalu kita tinggal panggil seperti ini
 
@@ -166,7 +166,7 @@ Lalu kita tinggal panggil seperti ini
     User::isMember()->get();
 ```
 
-Perlu diingat pemanggilan fungsi dengan format 'camelCase'.
+Perlu diingat untuk pemanggilan fungsinya menggunaka format 'camelCase'.
 
 Atau lebih kerennya kita bisa membuat queryscopenya dinamis.
 
