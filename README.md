@@ -121,9 +121,10 @@ dan:
 
 - **whereIn**
 
-Sintaks `whereIn`
+Sintaks `whereIn` :
+```php
     whereIn(Coulumn_name, Array);
-
+```
 Contoh Penggunaan `whereIn`
 ```php
     User::whereIn('id', [1, 2, 3])->get();
@@ -132,8 +133,10 @@ permintaan di atas mencari `id` yang valuenya `1`,`2`,dan `3`.
 
 - **whereNotIn**
 
-Sintaks `whereNotIn`
+Sintaks `whereNotIn` :
+```php
     whereNotIn(Coulumn_name, Array);
+```
 
 Contoh Penggunaan `whereNotIn`
 ```php
