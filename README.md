@@ -1,9 +1,9 @@
 # Laravel Trik Indonesia
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **18** trik._
+_Berisi: **19** trik._
 
-**Terakhir diupdate 02 Oktober 2021**
+**Terakhir diupdate 04 Oktober 2021**
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -11,7 +11,7 @@ _Berisi: **18** trik._
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (6 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (7 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
@@ -29,6 +29,8 @@ _Berisi: **18** trik._
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
 
 - [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
+
+- [Penulisan `whereIn` dan `whereNotIn`](#penulisan-whereIn-dan-whereNotIn)
 
 - [Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot](#cara-otomatis-mengisi-kolom-created_at-dan-updated_at-pada-tabel-pivot)
 
@@ -115,6 +117,30 @@ dan:
 
     $users = User::whereIdAndNama(1, 'namauser')->get();
     
+### Penulisan whereIn dan whereNotIn
+
+- **whereIn**
+
+Sintaks `whereIn`
+    whereIn(Coulumn_name, Array);
+
+Contoh Penggunaan `whereIn`
+```php
+    User::whereIn('id', [1, 2, 3])->get();
+```
+permintaan di atas mencari `id` yang valuenya `1`,`2`,dan `3`.
+
+- **whereNotIn**
+
+Sintaks `whereNotIn`
+    whereNotIn(Coulumn_name, Array);
+
+Contoh Penggunaan `whereNotIn`
+```php
+    User::whereNotIn('id', [1, 2, 3])->get();
+```
+permintaan di atas mencari `id` yang valuenya bukan `1`,`2`,dan `3`.
+
 ### **Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot**
 
 Sebelumnya, jika kita ingin mengisi tabel pivot. Kita bisa menggunakan method `sync()` seperti contoh dibawah ini:
