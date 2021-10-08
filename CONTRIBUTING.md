@@ -21,6 +21,9 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
       2. langkah dua
       dst.
       ```
+4. Kirimkan pul-request dengan judul yang jelas.
+
+*_catatan: berikan comment untuk menambahkan label `hacktoberfest-accepted` (jika diinginkan)_.
 
 ## Sekian
 Semoga bermanfaat.
