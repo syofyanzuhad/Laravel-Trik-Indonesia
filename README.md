@@ -26,7 +26,7 @@
 	</a>
 </p>
 
-Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
+Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 	
 - <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
 - _Berisi: **19** trik._
