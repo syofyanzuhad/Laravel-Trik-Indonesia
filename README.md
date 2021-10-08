@@ -31,7 +31,7 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 - <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
 - _Berisi: **19** trik._
 
-### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
+### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/contribute) untuk memberikan manfaat lebih banyak !
 
 **Harap perhatikan juga cara untuk berkontribusi [DISINI](/CONTRIBUTING.md) !!**
 
