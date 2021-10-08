@@ -1,11 +1,39 @@
 # Laravel Trik Indonesia
+
+<p align='center'>
+	<img src="https://img.shields.io/badge/hacktoberfest-2021-blueviolet" alt="Hacktober Badge"/>
+  <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
+ 	<a href="https://github.com/keshavsingh4522" >
+		<img src="https://img.shields.io/badge/Contributions-welcome-violet.svg?style=flat&logo=git" alt="Contributions" />
+	</a>
+</p>
+
+<p align='center'>
+  <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
+	  <img src='https://visitor-badge.glitch.me/badge?page_id=syofyanzuhad.laravel-trik-indonesia'>
+	</a>
+	<a href="https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/pulls">
+		<img src="https://img.shields.io/github/issues-pr/syofyanzuhad/Laravel-Trik-Indonesia" alt="Pull Requests Badge"/>
+	</a>
+  <a href="https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/graphs/contributors">
+		<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/syofyanzuhad/Laravel-Trik-Indonesia?color=2b9348">
+	</a>
+  <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
+		<img src='https://img.shields.io/github/forks/syofyanzuhad/Laravel-Trik-Indonesia'>
+	</a>
+  <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
+		<img src='https://img.shields.io/github/stars/syofyanzuhad/Laravel-Trik-Indonesia'>
+	</a>
+</p>
+
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
-
-_Berisi: **19** trik._
-
-**Terakhir diupdate 04 Oktober 2021**
+	
+- <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
+- _Berisi: **19** trik._
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
+
+**Harap perhatikan juga cara untuk berkontribusi [DISINI](/CONTRIBUTING.md) !!**
 
 > _inspired by: [LaravelDaily](https://github.com/LaravelDaily/laravel-tips)_
 
