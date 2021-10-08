@@ -10,7 +10,6 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
 2. Edit file [README.md](/readme.md).
 3. Perhatikan hal-hal yang perlu diubah:
    - Jumlah trik.
-   - Terakhir diupdate.
    - Daftar Isi.
    - Tulis trik sesuai dengan contoh yang ada atau format di bawah ini:
      - Judul: `- [Judul tulisan yang ingin dibuat](#judul-tulisan-yang-ingin-dibuat)`
