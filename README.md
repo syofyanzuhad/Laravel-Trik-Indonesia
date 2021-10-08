@@ -38,6 +38,8 @@ _Berisi: **19** trik._
 
 - [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah)
 
+- [Cara menerapkan select kolom pada table di Eloquent](#cara-menerapkan-select-kolom-pada-table-di-eloquent)
+
 
 ---
 
@@ -78,45 +80,45 @@ Caranya sangat mudah
 - **created_at**
 
 Untuk created_at cukup menambahkan :
-
+```php
      const CREATED_AT = 'tgl_dibuat';
-
+```
 - **updated_at**
 
 dan untuk  updated_at cukup menambahkan:
-
+```php
     const UPDATED_AT = 'tgl_diupdate';
-
+```
 ### Penulisan where dengan whereKolom
 
 - **where**
 
 Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
-
+```php
     $users = User::where('id', 1)->get();
-
+```
 atau kita mau menampilkan data berdasarkan `nama`:
-
+```php
     $users = User::where('nama', 'namauser')->get();
-
+```
 dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
-
+```php
      $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
-
+```
 - **whereKolom**
 
 Sebenarnya kita juga bisa menuliskannya seperti ini:
-
+```php
     $users = User::whereId(1)->get();
-
+```
 atau:
-
+```php
      $users = User::whereNama('namauser')->get();
-
+```
 dan:
-
+```php
     $users = User::whereIdAndNama(1, 'namauser')->get();
-    
+```
 ### Penulisan whereIn dan whereNotIn
 
 - **whereIn**
@@ -227,6 +229,28 @@ Untuk kodenya seperti di bawah ini :
 
 ```php
    protected $guarded = [];
+```
+
+### **Cara menerapkan select kolom pada table di Eloquent**
+
+Oke bagaimana cara select dengan eloquent?
+Misalnya, kita mempunyai 30 column pada pada 1 table lalu yang kita ingin tampilkan hanya 5 column saja.
+Nah, pemborosan sekali jika kita hanya ingin menampilkan 5 column tapi 30 column nya ter-select, maka ini membuat performa database tidak baik malah jenderung membebani, apalagi jika datanya sudah banyak.
+Ada caranya nih kalo di Eloquent, contohnya kita hanya ingin memampilkan 2 column dari Model `User`:
+
+Yaitu jika menggunakan fungsi `get()`:
+```php
+    User::get(['name', 'email']);
+```
+Bisa juga menggunakan fungsi `select()`:
+```php
+    User::select(['name', 'email'])->get();
+```
+
+Maka, dua cara diatas hanya akan menampilkan 2 column dari table/model user yaitu colum `name` dan `email`.
+Oh ya, cara dengan fungsi `get()` bisa juga diterapkan pada fungsi `all()`
+```php
+    User::all(['name', 'email']);
 ```
 
 ---
