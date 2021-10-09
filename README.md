@@ -29,7 +29,7 @@
 Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 	
 - <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
-- _Berisi: **20** trik._
+- _Berisi: **21** trik._
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/contribute) untuk memberikan manfaat lebih banyak !
 
@@ -46,7 +46,7 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
 - [Routing](#routing) (1 trik).
-- [Lain - lain](#lain-lain) (1 trik).
+- [Lain - lain](#lain-lain) (2 trik).
 
 ## DB Models dan Eloquent
 
@@ -807,7 +807,7 @@ Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terleb
 ⬆️ [Ke Atas](#laravel-trik-indonesia)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
-
+- [Cara mengembalikan view dengan variabel](#cara-mengembalikan-view-dengan-variabel)
 ---
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
@@ -835,4 +835,34 @@ Yang benar adalah seperti ini:
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
+### **Cara mengembalikan view dengan variabel**
+Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `front-end`, yaitu:
+1. Menggunakan fungsi `with()`:
+```php
+    return view('view.index')->with('users', $users)->with('posts', $posts);
+```
+
+2. Dengan array dan langsung include ke parameter kedua di fungsi `view()`:
+```php
+    return view('view.index', ['users' => $users, 'posts' => $posts]);
+```
+
+3. Atau dengan variabel dengan tipe array:
+```php
+    $data = [
+        'users' => $users, 
+        'posts' => $posts
+    ];
+
+    return view('view.index', $data);
+```
+
+4. Terakhir dengan cara yang paling banyak di pakai yaitu dengan fungsi `compact()`:
+```php
+    $users = User::get();
+    $posts = Post::get();
+    
+    return view('view.index', compact('users', 'posts'))
+```
+Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/manual/en/function.compact.php'>disini</a>
 ---
