@@ -39,11 +39,11 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (7 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (8 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
-- [Basis Data (Database)](#basis-data-database) (2 trik).
+- [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
 - [Routing](#routing) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
