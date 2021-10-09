@@ -7,7 +7,7 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
 ## Langkah-langkah untuk berkontribusi
 
 1. Fork dulu repo ini.
-2. Edit file [README.md](/readme.md).
+2. Edit file [README.md](/readme.md). (Tekan . (titik) untuk mencoba magicnya github secara langsung)
 3. Perhatikan hal-hal yang perlu diubah:
    - Jumlah trik.
    - Daftar Isi.
@@ -21,7 +21,7 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
       2. langkah dua
       dst.
       ```
-4. Kirimkan pul-request dengan judul yang jelas.
+4. Kirimkan pull-request dengan judul yang jelas.
 
 *_catatan: berikan comment untuk menambahkan label `hacktoberfest-accepted` (jika diinginkan)_.
 
