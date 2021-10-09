@@ -46,7 +46,8 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
 - [Routing](#routing) (1 trik).
-- [Lain - lain](#lain-lain) (2 trik).
+- [Tampilan (View)](#tampilan-view) (1 trik).
+- [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
 
@@ -762,8 +763,8 @@ Contoh:
 
 ## Routing
 
-⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
-- [Route model binding](#Route-Model-Binding)
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Tampilan / view)](#tampilan-view)
+- [Route model binding](#route-model-binding)
 
 ---
 
@@ -803,37 +804,14 @@ Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terleb
 
 ---
 
-## Lain-lain
-⬆️ [Ke Atas](#laravel-trik-indonesia)
 
-- [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+## Tampilan (View)
+
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+
 - [Cara mengembalikan view dengan variabel](#cara-mengembalikan-view-dengan-variabel)
+
 ---
-
-### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
-
-- **if-else**
-
-Penulisan singkat if-else yaitu: 
-
-    $role = 0;
-    echo $role == 0 ? 'Admin' : 'Pengunjung';
-
-- **if-elseif-else**
-
-**Hindari** penulisan seperti ini: 
-
-> $role = 0;
-
-> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
-	
-Jika mengikuti penulisan di atas maka akan muncul pesan error
-**`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
-
-Yang benar adalah seperti ini:
-    
-    $role = 0;
-    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 ### **Cara mengembalikan view dengan variabel**
 Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `front-end`, yaitu:
@@ -865,4 +843,38 @@ Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `f
     return view('view.index', compact('users', 'posts'))
 ```
 Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/manual/en/function.compact.php'>disini</a>
+
+---
+
+## Lain-lain
+⬆️ [Ke Atas](#laravel-trik-indonesia)
+
+- [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
+---
+
+### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
+
+- **if-else**
+
+Penulisan singkat if-else yaitu: 
+
+    $role = 0;
+    echo $role == 0 ? 'Admin' : 'Pengunjung';
+
+- **if-elseif-else**
+
+**Hindari** penulisan seperti ini: 
+
+> $role = 0;
+
+> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
+	
+Jika mengikuti penulisan di atas maka akan muncul pesan error
+**`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
+
+Yang benar adalah seperti ini:
+    
+    $role = 0;
+    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+
 ---
