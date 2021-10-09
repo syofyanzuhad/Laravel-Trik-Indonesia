@@ -29,7 +29,7 @@
 Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 	
 - <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
-- _Berisi: **19** trik._
+- _Berisi: **20** trik._
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/contribute) untuk memberikan manfaat lebih banyak !
 
@@ -39,7 +39,7 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (7 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (8 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
@@ -65,6 +65,8 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 - [Menuliskan query where menggunakan 'LocalQueryScope'](#menuliskan-query-where-menggunakan-localqueryscope)
 
 - [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah)
+
+- [Cara menerapkan select kolom pada table di Eloquent](#cara-menerapkan-select-kolom-pada-table-di-eloquent)
 
 
 ---
@@ -106,45 +108,45 @@ Caranya sangat mudah
 - **created_at**
 
 Untuk created_at cukup menambahkan :
-
+```php
      const CREATED_AT = 'tgl_dibuat';
-
+```
 - **updated_at**
 
 dan untuk  updated_at cukup menambahkan:
-
+```php
     const UPDATED_AT = 'tgl_diupdate';
-
+```
 ### Penulisan where dengan whereKolom
 
 - **where**
 
 Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
-
+```php
     $users = User::where('id', 1)->get();
-
+```
 atau kita mau menampilkan data berdasarkan `nama`:
-
+```php
     $users = User::where('nama', 'namauser')->get();
-
+```
 dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
-
+```php
      $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
-
+```
 - **whereKolom**
 
 Sebenarnya kita juga bisa menuliskannya seperti ini:
-
+```php
     $users = User::whereId(1)->get();
-
+```
 atau:
-
+```php
      $users = User::whereNama('namauser')->get();
-
+```
 dan:
-
+```php
     $users = User::whereIdAndNama(1, 'namauser')->get();
-    
+```
 ### Penulisan whereIn dan whereNotIn
 
 - **whereIn**
@@ -255,6 +257,28 @@ Untuk kodenya seperti di bawah ini :
 
 ```php
    protected $guarded = [];
+```
+
+### **Cara menerapkan select kolom pada table di Eloquent**
+
+Oke bagaimana cara select dengan eloquent?
+Misalnya, kita mempunyai 30 column pada pada 1 table lalu yang kita ingin tampilkan hanya 5 column saja.
+Nah, pemborosan sekali jika kita hanya ingin menampilkan 5 column tapi 30 column nya ter-select, maka ini membuat performa database tidak baik malah jenderung membebani, apalagi jika datanya sudah banyak.
+Ada caranya nih kalo di Eloquent, contohnya kita hanya ingin memampilkan 2 column dari Model `User`:
+
+Yaitu jika menggunakan fungsi `get()`:
+```php
+    User::get(['name', 'email']);
+```
+Bisa juga menggunakan fungsi `select()`:
+```php
+    User::select(['name', 'email'])->get();
+```
+
+Maka, dua cara diatas hanya akan menampilkan 2 column dari table/model user yaitu colum `name` dan `email`.
+Oh ya, cara dengan fungsi `get()` bisa juga diterapkan pada fungsi `all()`
+```php
+    User::all(['name', 'email']);
 ```
 
 ---
