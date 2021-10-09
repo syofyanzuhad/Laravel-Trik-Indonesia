@@ -1,9 +1,9 @@
 # Laravel Trik Indonesia
 Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **19** trik._
+_Berisi: **20** trik._
 
-**Terakhir diupdate 04 Oktober 2021**
+**Terakhir diupdate 09 Oktober 2021**
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
 
@@ -15,7 +15,7 @@ _Berisi: **19** trik._
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
-- [Basis Data (Database)](#basis-data-database) (1 trik).
+- [Basis Data (Database)](#basis-data-database) (2 trik).
 - [Middleware](#middleware)(1 trik).
 - [Routing](#routing) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
