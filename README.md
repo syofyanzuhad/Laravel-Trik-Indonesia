@@ -812,3 +812,27 @@ Yang benar adalah seperti ini:
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
 
 ---
+
+### Print sql dengan membuat error pada query
+Dokumentasi di laravel menuliskan untuk melihat query sql yang sudah kita buat menggunakan eloquent maupun query builder dengan menggunakan ‘->toSql()’ dengan hasil sebagai berikut :
+
+> $results = User::orWhere('email', 'like', '%john@example.org%')
+        ->orWhere('name', 'like', '%John%')
+        ->toSql();
+  dd($results)
+
+Hasil kode di atas akan menghasilkan seperti ini :
+
+> select * from `users` where `email` like ? or `name` like ?
+Dengan metode ‘->toSql()’ di atas masih mempunyai kekurangan, yaitu kita harus mengisi tanda ‘?’ di atas menggunakan nilai yang ingin kita masukkan.
+
+Cara tersembunyi :
+
+Dengan membuat error pada query tersebut, memungkinkan kita untuk melihat query tersebut beserta nilai yang kita masukkan pada where nya.
+
+Contoh kita melakukan error pada query :
+
+> $results = User::orWhere('email', 'like', '%john@example.org%')
+    ->orWhere('nameaaaaa’, 'like', '%John%')
+    ->get();
+---
