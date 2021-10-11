@@ -643,7 +643,7 @@ function toPdf($html, $landscape = false)
 1. Tambahkan baris kode ini, di dalam file `.env`.
 
 ```php
-DB_CONNECTION2=mysql
+DB_CONNECTION2=mysql2
 DB_HOST2=127.0.0.1
 DB_PORT2=3306
 DB_DATABASE2=database ke 2
