@@ -676,12 +676,12 @@ DB_PASSWORD2=password kamu
         ],
 ```
 
-3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration
+3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration, sesuai dengan nama connection di `config/database.php`
 
 ```php
   public function up()
     {
-        Schema::connection(mysql2)->create('users', function (Blueprint $table) { // <= perhatikan connection nya
+        Schema::connection('mysql2')->create('users', function (Blueprint $table) { // <= perhatikan connection nya
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
