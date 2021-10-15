@@ -586,6 +586,23 @@ Contoh:
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
 
 - **if-else**
+```
+// ternary operators (?:) atau istilah lainnya shorthand if/else.
+// bisa digambarkan if = ?, dan else = :
+// example
+
+// if else 
+$nilaiUjian = 9;
+if ($nilaiUjian > 6) {
+echo 'Baik'
+} else {
+echo 'Kurang'
+}
+
+// ternary
+$nilaiUjian = 9;
+echo $nilaiUjian > 6 ? 'Baik' : 'Kurang';  // Baik
+```
 
 Penulisan singkat if-else yaitu: 
 
