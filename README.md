@@ -586,6 +586,7 @@ Contoh:
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
 
 - **if-else**
+//kamu
 ```
 // ternary operators (?:) atau istilah lainnya shorthand if/else.
 // bisa digambarkan if = ?, dan else = :
