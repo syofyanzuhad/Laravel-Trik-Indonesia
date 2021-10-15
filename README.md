@@ -110,13 +110,13 @@ Caranya sangat mudah
 
 Untuk created_at cukup menambahkan :
 ```php
-     const CREATED_AT = 'tgl_dibuat';
+const CREATED_AT = 'tgl_dibuat';
 ```
 - **updated_at**
 
 dan untuk  updated_at cukup menambahkan:
 ```php
-    const UPDATED_AT = 'tgl_diupdate';
+const UPDATED_AT = 'tgl_diupdate';
 ```
 ### Penulisan where dengan whereKolom
 
@@ -124,29 +124,29 @@ dan untuk  updated_at cukup menambahkan:
 
 Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
 ```php
-    $users = User::where('id', 1)->get();
+$users = User::where('id', 1)->get();
 ```
 atau kita mau menampilkan data berdasarkan `nama`:
 ```php
-    $users = User::where('nama', 'namauser')->get();
+$users = User::where('nama', 'namauser')->get();
 ```
 dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
 ```php
-     $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
+$users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
 ```
 - **whereKolom**
 
 Sebenarnya kita juga bisa menuliskannya seperti ini:
 ```php
-    $users = User::whereId(1)->get();
+$users = User::whereId(1)->get();
 ```
 atau:
 ```php
-     $users = User::whereNama('namauser')->get();
+$users = User::whereNama('namauser')->get();
 ```
 dan:
 ```php
-    $users = User::whereIdAndNama(1, 'namauser')->get();
+$users = User::whereIdAndNama(1, 'namauser')->get();
 ```
 ### Penulisan whereIn dan whereNotIn
 
@@ -154,11 +154,11 @@ dan:
 
 Sintaks `whereIn` :
 ```php
-    whereIn(Coulumn_name, Array);
+whereIn(Coulumn_name, Array);
 ```
 Contoh Penggunaan `whereIn`
 ```php
-    User::whereIn('id', [1, 2, 3])->get();
+User::whereIn('id', [1, 2, 3])->get();
 ```
 permintaan di atas mencari `id` yang valuenya `1`,`2`,dan `3`.
 
@@ -166,12 +166,12 @@ permintaan di atas mencari `id` yang valuenya `1`,`2`,dan `3`.
 
 Sintaks `whereNotIn` :
 ```php
-    whereNotIn(Coulumn_name, Array);
+whereNotIn(Coulumn_name, Array);
 ```
 
 Contoh Penggunaan `whereNotIn`
 ```php
-    User::whereNotIn('id', [1, 2, 3])->get();
+User::whereNotIn('id', [1, 2, 3])->get();
 ```
 permintaan di atas mencari `id` yang valuenya bukan `1`,`2`,dan `3`.
 
@@ -179,18 +179,18 @@ permintaan di atas mencari `id` yang valuenya bukan `1`,`2`,dan `3`.
 
 Sebelumnya, jika kita ingin mengisi tabel pivot. Kita bisa menggunakan method `sync()` seperti contoh dibawah ini:
 ```php
-   public function store() {
-      ...
-      $user->roles()->sync([1, 2, 3]);
-      ...
-   }
+public function store() {
+   ...
+   $user->roles()->sync([1, 2, 3]);
+   ...
+}
 ```
 dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel `role_user`. Jika kita ingin menggunakan `created_at` dan `updated_at` pada tabel pivotnya yaitu `role_user`, maka kita perlu menambahkan method `->withTimestamps()` pada relasi model `User.php` seperti di bawah ini:
 ```php
-    public function role()
-    {
-        return $this->belongsToMany(Role::class)->withTimestamps();
-    }
+public function role()
+{
+    return $this->belongsToMany(Role::class)->withTimestamps();
+}
 ```
 
 ### **Menuliskan query where menggunakan `LocalQueryScope`**
@@ -198,9 +198,9 @@ dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel 
 Misal anda mempunyai model `User` lalu anda ingin mengambil data user dengan role 'admin' atau 'member'. Kita bisa saja menulis seperti ini
 
 ```php
-    User::where('role', 'admin')->get();
+User::where('role', 'admin')->get();
 
-    User::where('role', 'member')->get();
+User::where('role', 'member')->get();
 ```
 
 Dengan QueryScope, penulisan where diatas akan lebih mudah dibaca oleh kita sebagai developer.
@@ -208,13 +208,13 @@ Dengan QueryScope, penulisan where diatas akan lebih mudah dibaca oleh kita seba
 Pada model User, tambahkan fungsi seperti ini:
 
 ```php
-    public function scopeIsAdmin($query) {
-        return $query->where('role', 'admin');
-    }
+public function scopeIsAdmin($query) {
+  return $query->where('role', 'admin');
+}
 
-    public function scopeIsMember($query) {
-        return $query->where('role', 'member');
-    }
+public function scopeIsMember($query) {
+  return $query->where('role', 'member');
+}
 ```
 
 Kita membuat fungsi diatas harus dengan prefix (awalan) "scope" lalu sisanya kita beri nama fungsi bebas dengan format sisanya 'PascalCase'
@@ -222,9 +222,9 @@ Kita membuat fungsi diatas harus dengan prefix (awalan) "scope" lalu sisanya kit
 Lalu kita tinggal panggil seperti ini
 
 ```php
-    User::isAdmin()->get();
+User::isAdmin()->get();
 
-    User::isMember()->get();
+User::isMember()->get();
 ```
 
 Perlu diingat untuk pemanggilan fungsinya menggunaka format 'camelCase'.
@@ -232,24 +232,24 @@ Perlu diingat untuk pemanggilan fungsinya menggunaka format 'camelCase'.
 Atau lebih kerennya kita bisa membuat queryscopenya dinamis.
 
 ```php
-    public function scopeRole($query, $role) {
-        return $query->where('role', $role);
-    }
+public function scopeRole($query, $role) {
+    return $query->where('role', $role);
+}
 
-    // Pemanggilan
+// Pemanggilan
+User::role('admin')->get();
 
-    User::role('admin')->get();
-    // Atau
-    User::role('member')->get();
+// Atau
+User::role('member')->get();
 ```
 
 ### **Cara membuat fillable di seluruh fieldnya pada model dengan mudah**
 
 Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat diisi data pada array `$fillable` di modelnya. Jika kita ingin menambahkan property `fillable` ke model, kita dapat menambahkan field dari table kita ke dalam array fillable di modelnya, seperti berikut:
 ```php
-   protected $fillable = [
-        'nama', 'email', 'password', 'alamat', 'hobi'
-   ];
+ protected $fillable = [
+   'nama', 'email', 'password', 'alamat', 'hobi'
+ ];
 ```
 Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabelnya banyak dan kita memiliki kebutuhan untuk fieldnya dapat diisi semua, maka kita harus memasukkan seluruh fieldnya ke dalam array `$fillable` dan itu membuat kode menjadi banyak dan tentunya tidak efektif, karena apa? Jika kita menambahkan field baru, kita harus menambahkan field baru tersebut ke dalam array `$fillable` lagi.
 
@@ -257,7 +257,7 @@ Jadi untuk memangkas kode tersebut, kita dapat memanfaatkan fitur `$guarded` pad
 Untuk kodenya seperti di bawah ini :
 
 ```php
-   protected $guarded = [];
+protected $guarded = [];
 ```
 
 ### **Cara menerapkan select kolom pada table di Eloquent**
@@ -269,17 +269,17 @@ Ada caranya nih kalo di Eloquent, contohnya kita hanya ingin memampilkan 2 colum
 
 Yaitu jika menggunakan fungsi `get()`:
 ```php
-    User::get(['name', 'email']);
+User::get(['name', 'email']);
 ```
 Bisa juga menggunakan fungsi `select()`:
 ```php
-    User::select(['name', 'email'])->get();
+User::select(['name', 'email'])->get();
 ```
 
 Maka, dua cara diatas hanya akan menampilkan 2 column dari table/model user yaitu colum `name` dan `email`.
 Oh ya, cara dengan fungsi `get()` bisa juga diterapkan pada fungsi `all()`
 ```php
-    User::all(['name', 'email']);
+User::all(['name', 'email']);
 ```
 
 ---
