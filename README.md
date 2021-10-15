@@ -705,43 +705,34 @@ php artisan migrate --database=mysql2
 ## Middleware
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Routing)](#routing)
-- [Validasi per menit menggunakan throttle](#Validasi-per-menit-menggunakan-throttle)
+- [Validasi per menit menggunakan throttle](#validasi-per-menit-menggunakan-throttle)
 ---
 
 ### **Validasi per menit menggunakan throttle**
 1. Membuat class middleware menggunakan artisan
 
-
-		php artisan make:middleware Report
-
+```php
+php artisan make:middleware Report
+```
 	
 2. Tambahkan Class middleware tadi ke dalam middlewareGroups yang ada di kernel.php
-
-		protected $middlewareGroups = [
-
-			'api' => [
-
-				'report' => \App\Http\Middleware\Report::class,
-
-			]
-
-		];
-
+```php
+protected $middlewareGroups = [
+	'api' => [
+		'report' => \App\Http\Middleware\Report::class,
+	]
+];
+```
 
 3. Masuk Ke Web.php. dan Tambahkan Route middleware Group
-
-		Route::middleware('report', 'throttle:1,1440')->group(function () {
-
+```php
+Route::middleware('report', 'throttle:1,1440')->group(function () {
 			Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
-
-		});
-
-		//'report' -> nama middleware yg sudah terdaftar di kernel
-
-		//'throttle' -> library untuk Rate Limit
-
-		//'1,1440' -> 1 kali validasi dalam 24 jam/1440 menit
-
+});
+//'report' -> nama middleware yg sudah terdaftar di kernel
+//'throttle' -> library untuk Rate Limit
+//'1,1440' -> 1 kali validasi dalam 24 jam/1440 menit
+```
 
 
 **Cara Merubah pesan error throttle**
@@ -749,17 +740,15 @@ php artisan migrate --database=mysql2
 Masuk ke  `Exceptions/Handler.php`, masukkan kondisi di dalam function render.
 
 Contoh:
+```php
+if ($exception instanceof ThrottleRequestsException) {
 
-	if ($exception instanceof ThrottleRequestsException) {
-	
-	    return response()->json(abort(429, 'Upaya Hari Ini Sudah Habis'));
-	    
-	}else {
-	
-	    return parent::render($request, $exception);            
-	    
-	}
+   return response()->json(abort(429, 'Upaya Hari Ini Sudah Habis'));
+}else {
 
+   return parent::render($request, $exception);            
+}
+```
 
 ## Routing
 
@@ -772,7 +761,7 @@ Contoh:
 
 Untuk mencari data berdasarkan id / kolom lain pada suatu table kita bisa menggunakan route model binding yang disediakan laravel. Misalnya : 
 
-```
+```php
 //Route
 Route::get('book/{book}', 'BookController@show');
 
@@ -788,11 +777,11 @@ Kode diatas akan menampilkan data buku sesuai dengan id yang dituliskan sebagai 
 
 Kita juga bisa mencari data berdasarkan kolom yang lain misalnya kolom slug dengan mengubah route menjadi : 
 
-```
-//Route => tambahkan {:nama_kolom} setelah nama model book
+```php
+// Route => tambahkan {:nama_kolom} setelah nama model book
 Route::get('book/{book:slug}', 'BookController@show');
 
-//Controller => akan menampilkan data berdasarkan slugnya tanpa query where
+// Controller => akan menampilkan data berdasarkan slugnya tanpa query where
 class BookController {
      public function show (Book $book){
            return $book;
@@ -817,34 +806,35 @@ Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terleb
 Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `front-end`, yaitu:
 1. Menggunakan fungsi `with()`:
 ```php
-    return view('view.index')->with('users', $users)->with('posts', $posts);
+return view('view.index')->with('users', $users)->with('posts', $posts);
 ```
 
 2. Dengan array dan langsung include ke parameter kedua di fungsi `view()`:
 ```php
-    return view('view.index', ['users' => $users, 'posts' => $posts]);
+return view('view.index', ['users' => $users, 'posts' => $posts]);
 ```
 
 3. Atau dengan variabel dengan tipe array:
 ```php
-    $data = [
-        'users' => $users, 
-        'posts' => $posts
-    ];
+$data = [
+    'users' => $users, 
+    'posts' => $posts
+];
 
-    return view('view.index', $data);
+return view('view.index', $data);
 ```
 
 4. Terakhir dengan cara yang paling banyak di pakai yaitu dengan fungsi `compact()`:
 ```php
-    $users = User::get();
-    $posts = Post::get();
+$users = User::get();
+$posts = Post::get();
     
-    return view('view.index', compact('users', 'posts'))
+return view('view.index', compact('users', 'posts'))
 ```
 Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/manual/en/function.compact.php'>disini</a>
 
 ---
+
 
 ## Lain-lain
 ⬆️ [Ke Atas](#laravel-trik-indonesia)
@@ -855,26 +845,45 @@ Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/man
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
 
 - **if-else**
+```php
+// ternary operators (?:) atau istilah lainnya shorthand if/else.
+// bisa digambarkan if = ?, dan else = :
+// contoh:
 
-Penulisan singkat if-else yaitu: 
+$nilaiUjian = 9;
 
-    $role = 0;
-    echo $role == 0 ? 'Admin' : 'Pengunjung';
+// menggunakan if-else 
+
+if ($nilaiUjian > 6) {
+    echo 'Baik'
+} else {
+    echo 'Kurang'
+}
+
+// menggunakan ternary
+echo $nilaiUjian > 6 ? 'Baik' : 'Kurang';  // Baik
+
+
+// Contoh lain penulisan singkat if-else: 
+
+$role = 0;
+echo $role == 0 ? 'Admin' : 'Pengunjung';
+```
 
 - **if-elseif-else**
 
 **Hindari** penulisan seperti ini: 
 
-> $role = 0;
+```php
+$role = 0;
+echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
+```
 
-> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
-	
 Jika mengikuti penulisan di atas maka akan muncul pesan error
 **`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
 
 Yang benar adalah seperti ini:
-    
-    $role = 0;
-    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
-
----
+```php
+$role = 0;
+echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+```
