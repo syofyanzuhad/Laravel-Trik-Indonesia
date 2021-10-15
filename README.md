@@ -1,21 +1,53 @@
 # Laravel Trik Indonesia
-Kumpulan trik berbahasa indonesia untuk menggunakan framework laravel.
 
-_Berisi: **15** trik._
+<p align='center'>
+	<img src="https://img.shields.io/badge/hacktoberfest-2021-blueviolet" alt="Hacktober Badge"/>
+  <img src="https://img.shields.io/static/v1?label=%F0%9F%8C%9F&message=If%20Useful&style=style=flat&color=BC4E99" alt="Star Badge"/>
+ 	<a href="https://github.com/keshavsingh4522" >
+		<img src="https://img.shields.io/badge/Contributions-welcome-violet.svg?style=flat&logo=git" alt="Contributions" />
+	</a>
+</p>
 
-**Terakhir diupdate 24 Maret 2021**
+<p align='center'>
+  <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
+	  <img src='https://visitor-badge.glitch.me/badge?page_id=syofyanzuhad.laravel-trik-indonesia'>
+	</a>
+	<a href="https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/pulls">
+		<img src="https://img.shields.io/github/issues-pr/syofyanzuhad/Laravel-Trik-Indonesia" alt="Pull Requests Badge"/>
+	</a>
+  <a href="https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/graphs/contributors">
+		<img alt="GitHub contributors" src="https://img.shields.io/github/contributors/syofyanzuhad/Laravel-Trik-Indonesia?color=2b9348">
+	</a>
+  <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
+		<img src='https://img.shields.io/github/forks/syofyanzuhad/Laravel-Trik-Indonesia'>
+	</a>
+  <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
+		<img src='https://img.shields.io/github/stars/syofyanzuhad/Laravel-Trik-Indonesia'>
+	</a>
+</p>
 
-> ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia) untuk memberikan manfaat lebih banyak !
+Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
+	
+- <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
+- _Berisi: **21** trik._
+
+### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/contribute) untuk memberikan manfaat lebih banyak !
+
+**Harap perhatikan juga cara untuk berkontribusi [DISINI](/CONTRIBUTING.md) !!**
+
+> _inspired by: [LaravelDaily](https://github.com/LaravelDaily/laravel-tips)_
 
 # Daftar Isi :
 
-- [DB Models dan Eloquent](#db-models-dan-eloquent) (3 trik).
+- [DB Models dan Eloquent](#db-models-dan-eloquent) (8 trik).
 - [Perintah `artisan`](#perintah-artisan) (1 trik).
 - [Package](#package) (6 trik).
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
-- [Lain - lain](#lain-lain) (2 trik).
+- [Routing](#routing) (1 trik).
+- [Tampilan (View)](#tampilan-view) (1 trik).
+- [Lain - lain](#lain-lain) (1 trik).
 
 ## DB Models dan Eloquent
 
@@ -26,6 +58,18 @@ _Berisi: **15** trik._
 - [Cara Mengubah format text `created_at` dan `updated_at` menjadi `tgl_dibuat` dan `tgl_diupdate` lewat model](#cara-mengubah-format-text-created_at-dan-updated_at-menjadi-tgl_dibuat-dan-tgl_diupdate-lewat-model)
 
 - [Penulisan `where` dengan `whereKolom`](#penulisan-where-dengan-wherekolom)
+
+- [Penulisan `whereIn` dan `whereNotIn`](#penulisan-whereIn-dan-whereNotIn)
+
+- [Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot](#cara-otomatis-mengisi-kolom-created_at-dan-updated_at-pada-tabel-pivot)
+
+- [Menuliskan query where menggunakan 'LocalQueryScope'](#menuliskan-query-where-menggunakan-localqueryscope)
+
+- [Cara membuat `fillable` di seluruh fieldnya pada model dengan mudah](#cara-membuat-fillable-di-seluruh-fieldnya-pada-model-dengan-mudah)
+
+- [Cara menerapkan select kolom pada table di Eloquent](#cara-menerapkan-select-kolom-pada-table-di-eloquent)
+
+
 ---
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
@@ -65,63 +109,204 @@ Caranya sangat mudah
 - **created_at**
 
 Untuk created_at cukup menambahkan :
-
+```php
      const CREATED_AT = 'tgl_dibuat';
-
+```
 - **updated_at**
 
 dan untuk  updated_at cukup menambahkan:
-
+```php
     const UPDATED_AT = 'tgl_diupdate';
-
-### [Penulisan where dengan whereKolom](#penulisan-where-dengan-wherekolom)
+```
+### Penulisan where dengan whereKolom
 
 - **where**
 
 Misalnya kita punya table `users` dengan kolom `id`, `nama` dan kita mau menampilkan data `users` yang `id`nya 1, biasanya kita menuliskannya seperti ini:
-
+```php
     $users = User::where('id', 1)->get();
-
+```
 atau kita mau menampilkan data berdasarkan `nama`:
-
+```php
     $users = User::where('nama', 'namauser')->get();
-
+```
 dan kita juga bisa menampilkan data berdasarkan `id` dan `nama`:
-
+```php
      $users = User::where(['id'=> 1, 'nama' => 'namauser'])->get();
-
+```
 - **whereKolom**
 
 Sebenarnya kita juga bisa menuliskannya seperti ini:
-
+```php
     $users = User::whereId(1)->get();
-
+```
 atau:
-
+```php
      $users = User::whereNama('namauser')->get();
-
+```
 dan:
-
+```php
     $users = User::whereIdAndNama(1, 'namauser')->get();
+```
+### Penulisan whereIn dan whereNotIn
 
+- **whereIn**
+
+Sintaks `whereIn` :
+```php
+    whereIn(Coulumn_name, Array);
+```
+Contoh Penggunaan `whereIn`
+```php
+    User::whereIn('id', [1, 2, 3])->get();
+```
+permintaan di atas mencari `id` yang valuenya `1`,`2`,dan `3`.
+
+- **whereNotIn**
+
+Sintaks `whereNotIn` :
+```php
+    whereNotIn(Coulumn_name, Array);
+```
+
+Contoh Penggunaan `whereNotIn`
+```php
+    User::whereNotIn('id', [1, 2, 3])->get();
+```
+permintaan di atas mencari `id` yang valuenya bukan `1`,`2`,dan `3`.
+
+### **Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot**
+
+Sebelumnya, jika kita ingin mengisi tabel pivot. Kita bisa menggunakan method `sync()` seperti contoh dibawah ini:
+```php
+   public function store() {
+      ...
+      $user->roles()->sync([1, 2, 3]);
+      ...
+   }
+```
+dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel `role_user`. Jika kita ingin menggunakan `created_at` dan `updated_at` pada tabel pivotnya yaitu `role_user`, maka kita perlu menambahkan method `->withTimestamps()` pada relasi model `User.php` seperti di bawah ini:
+```php
+    public function role()
+    {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+```
+
+### **Menuliskan query where menggunakan `LocalQueryScope`**
+
+Misal anda mempunyai model `User` lalu anda ingin mengambil data user dengan role 'admin' atau 'member'. Kita bisa saja menulis seperti ini
+
+```php
+    User::where('role', 'admin')->get();
+
+    User::where('role', 'member')->get();
+```
+
+Dengan QueryScope, penulisan where diatas akan lebih mudah dibaca oleh kita sebagai developer.
+
+Pada model User, tambahkan fungsi seperti ini:
+
+```php
+    public function scopeIsAdmin($query) {
+        return $query->where('role', 'admin');
+    }
+
+    public function scopeIsMember($query) {
+        return $query->where('role', 'member');
+    }
+```
+
+Kita membuat fungsi diatas harus dengan prefix (awalan) "scope" lalu sisanya kita beri nama fungsi bebas dengan format sisanya 'PascalCase'
+
+Lalu kita tinggal panggil seperti ini
+
+```php
+    User::isAdmin()->get();
+
+    User::isMember()->get();
+```
+
+Perlu diingat untuk pemanggilan fungsinya menggunaka format 'camelCase'.
+
+Atau lebih kerennya kita bisa membuat queryscopenya dinamis.
+
+```php
+    public function scopeRole($query, $role) {
+        return $query->where('role', $role);
+    }
+
+    // Pemanggilan
+
+    User::role('admin')->get();
+    // Atau
+    User::role('member')->get();
+```
+
+### **Cara membuat fillable di seluruh fieldnya pada model dengan mudah**
+
+Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat diisi data pada array `$fillable` di modelnya. Jika kita ingin menambahkan property `fillable` ke model, kita dapat menambahkan field dari table kita ke dalam array fillable di modelnya, seperti berikut:
+```php
+   protected $fillable = [
+        'nama', 'email', 'password', 'alamat', 'hobi'
+   ];
+```
+Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabelnya banyak dan kita memiliki kebutuhan untuk fieldnya dapat diisi semua, maka kita harus memasukkan seluruh fieldnya ke dalam array `$fillable` dan itu membuat kode menjadi banyak dan tentunya tidak efektif, karena apa? Jika kita menambahkan field baru, kita harus menambahkan field baru tersebut ke dalam array `$fillable` lagi.
+
+Jadi untuk memangkas kode tersebut, kita dapat memanfaatkan fitur `$guarded` pada model. Singkatnya `$guarded` ini memiliki fungsi kebalikan dari `$fillable`, jika `$fillable` adalah list dari field yang dapat diisi data, `$guarded` ini adalah list field yang tidak boleh diisi data. Jadi simplenya kita tinggal menggunakan fitur dari `$guarded` ini lalu mengisinya dengan array kosong, yang artinya kita memberikan akses untuk seluruh masukan data ke dalam field dari model. 
+Untuk kodenya seperti di bawah ini :
+
+```php
+   protected $guarded = [];
+```
+
+### **Cara menerapkan select kolom pada table di Eloquent**
+
+Oke bagaimana cara select dengan eloquent?
+Misalnya, kita mempunyai 30 column pada pada 1 table lalu yang kita ingin tampilkan hanya 5 column saja.
+Nah, pemborosan sekali jika kita hanya ingin menampilkan 5 column tapi 30 column nya ter-select, maka ini membuat performa database tidak baik malah jenderung membebani, apalagi jika datanya sudah banyak.
+Ada caranya nih kalo di Eloquent, contohnya kita hanya ingin memampilkan 2 column dari Model `User`:
+
+Yaitu jika menggunakan fungsi `get()`:
+```php
+    User::get(['name', 'email']);
+```
+Bisa juga menggunakan fungsi `select()`:
+```php
+    User::select(['name', 'email'])->get();
+```
+
+Maka, dua cara diatas hanya akan menampilkan 2 column dari table/model user yaitu colum `name` dan `email`.
+Oh ya, cara dengan fungsi `get()` bisa juga diterapkan pada fungsi `all()`
+```php
+    User::all(['name', 'email']);
+```
+
+---
 ## Perintah `artisan`
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Package)](#package)
 
-- [Cara membuat model, controller, migration sekaligus](#cara-membuat-model-controller-migration-sekaligus)
+- [Cara membuat model, controller, migration, factory, seeder sekaligus](#cara-membuat-model-controller-migration-factory-seeder-sekaligus)
 ---
 
-### **Cara membuat model, controller, migration sekaligus**
+### **Cara membuat model, controller, migration, factory, seeder sekaligus**
 
-Untuk membuat `model`, `controller`, dan `migration` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mc`, seperti berikut :
+Untuk membuat `model`, `controller`,`migration`, `factory`, dan `seeder` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mcfs`, seperti berikut :
 
 ```php
-php artisan make:model User -mc
+php artisan make:model User -mcfs
 ```
 
 Jika kita ingin membuat `controller` dengan resource (default method dari laravel). Gunakan perintah ini (dengan tambahan huruf `r`):
 ```php
-php artisan make:model User -mcr
+php artisan make:model User -mcrfs
+```
+
+Atau di laravel versi 8 kita bisa menyingkatnya dengan flag `-a` (yang berarti all). Maka kita akan membuat semuanya (`model`, `controller`,`migration`, `factory`, dan `seeder`) sekaligus, dengan perintah yang sangat singkat, seperti di bawah ini :
+
+```
+php artisan make:model User -a
 ```
 
 ## Package
@@ -458,7 +643,7 @@ function toPdf($html, $landscape = false)
 1. Tambahkan baris kode ini, di dalam file `.env`.
 
 ```php
-DB_CONNECTION2=mysql
+DB_CONNECTION2=mysql2
 DB_HOST2=127.0.0.1
 DB_PORT2=3306
 DB_DATABASE2=database ke 2
@@ -491,12 +676,12 @@ DB_PASSWORD2=password kamu
         ],
 ```
 
-3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration
+3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration, sesuai dengan nama connection di `config/database.php`
 
 ```php
   public function up()
     {
-        Schema::connection(mysql2)->create('users', function (Blueprint $table) { // <= perhatikan connection nya
+        Schema::connection('mysql2')->create('users', function (Blueprint $table) { // <= perhatikan connection nya
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
@@ -519,7 +704,7 @@ php artisan migrate --database=mysql2
 
 ## Middleware
 
-⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Routing)](#routing)
 - [Validasi per menit menggunakan throttle](#Validasi-per-menit-menggunakan-throttle)
 ---
 
@@ -605,7 +790,6 @@ echo 'Kurang'
 echo $nilaiUjian > 6 ? 'Baik' : 'Kurang';  // Baik
 
 ```
-
 Penulisan singkat if-else yaitu: 
 
     $role = 0;
@@ -626,6 +810,11 @@ Yang benar adalah seperti ini:
     
     $role = 0;
     echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+
+## Routing
+
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Tampilan / view)](#tampilan-view)
+- [Route model binding](#route-model-binding)
 
 ---
 
@@ -663,4 +852,45 @@ class BookController {
 
 Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terlebih dahulu sebelum menampilkan data.
 
+---
+
+
+## Tampilan (View)
+
+⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Lain -lain)](#lain-lain)
+
+- [Cara mengembalikan view dengan variabel](#cara-mengembalikan-view-dengan-variabel)
+
+---
+
+### **Cara mengembalikan view dengan variabel**
+Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `front-end`, yaitu:
+1. Menggunakan fungsi `with()`:
+```php
+    return view('view.index')->with('users', $users)->with('posts', $posts);
+```
+
+2. Dengan array dan langsung include ke parameter kedua di fungsi `view()`:
+```php
+    return view('view.index', ['users' => $users, 'posts' => $posts]);
+```
+
+3. Atau dengan variabel dengan tipe array:
+```php
+    $data = [
+        'users' => $users, 
+        'posts' => $posts
+    ];
+
+    return view('view.index', $data);
+```
+
+4. Terakhir dengan cara yang paling banyak di pakai yaitu dengan fungsi `compact()`:
+```php
+    $users = User::get();
+    $posts = Post::get();
+    
+    return view('view.index', compact('users', 'posts'))
+```
+Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/manual/en/function.compact.php'>disini</a>
 ---
