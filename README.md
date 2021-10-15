@@ -765,7 +765,6 @@ Contoh:
 ⬆️ [Ke Atas](#laravel-trik-indonesia)
 
 - [Penulisan singkat `if-else` dan `if-elseif-else` dengan ternary](#penulisan-singkat-if-else-dan-if-elseif-else-dengan-ternary)
-- [Route model binding](#Route-Model-Binding)
 ---
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
@@ -774,42 +773,45 @@ Contoh:
 ```php
 // ternary operators (?:) atau istilah lainnya shorthand if/else.
 // bisa digambarkan if = ?, dan else = :
-// example
+// contoh:
 
 $nilaiUjian = 9;
 
-// if else 
+// menggunakan if-else 
 
 if ($nilaiUjian > 6) {
-echo 'Baik'
+    echo 'Baik'
 } else {
-echo 'Kurang'
+    echo 'Kurang'
 }
 
-// ternary
+// menggunakan ternary
 echo $nilaiUjian > 6 ? 'Baik' : 'Kurang';  // Baik
 
-```
-Penulisan singkat if-else yaitu: 
 
-    $role = 0;
-    echo $role == 0 ? 'Admin' : 'Pengunjung';
+// Contoh lain penulisan singkat if-else: 
+
+$role = 0;
+echo $role == 0 ? 'Admin' : 'Pengunjung';
+```
 
 - **if-elseif-else**
 
 **Hindari** penulisan seperti ini: 
 
-> $role = 0;
+```php
+$role = 0;
+echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
+```
 
-> echo $role == 0 ? 'admin' : $role == 1 ? 'guru' : 'santri';
-	
 Jika mengikuti penulisan di atas maka akan muncul pesan error
 **`Unparenthesized a ? b : c ? d : e is deprecated. Use either (a ? b : c) ? d : e or a ? b : (c ? d : e)`**
 
 Yang benar adalah seperti ini:
-    
-    $role = 0;
-    echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+```php
+$role = 0;
+echo $role == 0 ? 'admin' : ($role == 1 ? 'guru' : 'santri'); 
+```
 
 ## Routing
 
@@ -822,7 +824,7 @@ Yang benar adalah seperti ini:
 
 Untuk mencari data berdasarkan id / kolom lain pada suatu table kita bisa menggunakan route model binding yang disediakan laravel. Misalnya : 
 
-```
+```php
 //Route
 Route::get('book/{book}', 'BookController@show');
 
@@ -838,11 +840,11 @@ Kode diatas akan menampilkan data buku sesuai dengan id yang dituliskan sebagai 
 
 Kita juga bisa mencari data berdasarkan kolom yang lain misalnya kolom slug dengan mengubah route menjadi : 
 
-```
-//Route => tambahkan {:nama_kolom} setelah nama model book
+```php
+// Route => tambahkan {:nama_kolom} setelah nama model book
 Route::get('book/{book:slug}', 'BookController@show');
 
-//Controller => akan menampilkan data berdasarkan slugnya tanpa query where
+// Controller => akan menampilkan data berdasarkan slugnya tanpa query where
 class BookController {
      public function show (Book $book){
            return $book;
@@ -893,4 +895,4 @@ Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `f
     return view('view.index', compact('users', 'posts'))
 ```
 Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/manual/en/function.compact.php'>disini</a>
----
+
