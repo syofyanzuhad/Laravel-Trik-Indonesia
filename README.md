@@ -737,7 +737,7 @@ protected $middlewareGroups = [
 3. Masuk Ke Web.php. dan Tambahkan Route middleware Group
 ```php
 Route::middleware('report', 'throttle:1,1440')->group(function () {
-	Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
+  Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
 });
 //'report' -> nama middleware yg sudah terdaftar di kernel
 //'throttle' -> library untuk Rate Limit
