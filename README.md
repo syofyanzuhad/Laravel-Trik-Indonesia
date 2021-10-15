@@ -591,8 +591,10 @@ Contoh:
 // bisa digambarkan if = ?, dan else = :
 // example
 
-// if else 
 $nilaiUjian = 9;
+
+// if else 
+
 if ($nilaiUjian > 6) {
 echo 'Baik'
 } else {
@@ -600,8 +602,8 @@ echo 'Kurang'
 }
 
 // ternary
-$nilaiUjian = 9;
 echo $nilaiUjian > 6 ? 'Baik' : 'Kurang';  // Baik
+
 ```
 
 Penulisan singkat if-else yaitu: 
