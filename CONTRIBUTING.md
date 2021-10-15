@@ -7,7 +7,10 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
 ## Langkah-langkah untuk berkontribusi
 
 1. Fork dulu repo ini.
-2. Edit file [README.md](/readme.md). (Tekan . (titik) untuk mencoba magicnya github secara langsung)
+2. Edit file [README.md](/readme.md).
+
+> Tips: _Tekan . (titik) untuk mempermudah melakukan perubahan di browser secara langsung_.
+
 3. Perhatikan hal-hal yang perlu diubah:
    - Jumlah trik.
    - Daftar Isi.
