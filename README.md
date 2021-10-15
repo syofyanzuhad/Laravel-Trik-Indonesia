@@ -294,7 +294,7 @@ Oh ya, cara dengan fungsi `get()` bisa juga diterapkan pada fungsi `all()`
 
 Untuk membuat `model`, `controller`,`migration`, `factory`, dan `seeder` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mcfs`, seperti berikut :
 
-```php
+```bash
 php artisan make:model User -mcfs
 ```
 
@@ -324,7 +324,9 @@ php artisan make:model User -a
 
 1. Install package
 
- `composer require spatie/laravel-permission`
+```
+composer require spatie/laravel-permission
+```
  
 2. edit app/config.php
 ```php
@@ -335,17 +337,25 @@ php artisan make:model User -a
 ```
 3. publish migration di terminal
 
-`php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"`
+```
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
+```
 
 4. clear config & cache
 
- `php artisan optimize:clear`
+```
+php artisan optimize:clear
+```
  **or**
- `php artisan config:clear`
+```
+php artisan config:clear
+```
  
 5. terakhir jalankan migration
 
- `php artisan migrate`
+```
+php artisan migrate
+```
 
 ---
 
@@ -519,10 +529,10 @@ $user->hasAllRoles(Role::all());
 1. Tambahkan Kodingan di bawah ini pada **app/Http/Kernel.php**
 ```php
 protected $routeMiddleware = [
-    // ...
-    'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-    'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+  // ...
+  'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+  'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+  'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
 ];
 ```
 
@@ -642,7 +652,7 @@ function toPdf($html, $landscape = false)
 
 1. Tambahkan baris kode ini, di dalam file `.env`.
 
-```php
+```env
 DB_CONNECTION2=mysql2
 DB_HOST2=127.0.0.1
 DB_PORT2=3306
@@ -655,47 +665,47 @@ DB_PASSWORD2=password kamu
 
 
 ```php
- 'mysql2' => [
-            'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST2', '127.0.0.1'),
-            'port' => env('DB_PORT2', '3306'),
-            'database' => env('DB_DATABASE2', 'forge'),
-            'username' => env('DB_USERNAME2', 'forge'),
-            'password' => env('DB_PASSWORD2', ''),
-            'unix_socket' => env('DB_SOCKET2', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => '',
-            'prefix_indexes' => true,
-            'strict' => true,
-            'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
-        ],
+'mysql2' => [
+    'driver' => 'mysql',
+    'url' => env('DATABASE_URL'),
+    'host' => env('DB_HOST2', '127.0.0.1'),
+    'port' => env('DB_PORT2', '3306'),
+    'database' => env('DB_DATABASE2', 'forge'),
+    'username' => env('DB_USERNAME2', 'forge'),
+    'password' => env('DB_PASSWORD2', ''),
+    'unix_socket' => env('DB_SOCKET2', ''),
+    'charset' => 'utf8mb4',
+    'collation' => 'utf8mb4_unicode_ci',
+    'prefix' => '',
+    'prefix_indexes' => true,
+    'strict' => true,
+    'engine' => null,
+    'options' => extension_loaded('pdo_mysql') ? array_filter([
+        PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+    ]) : [],
+],
 ```
 
 3. Untuk default databasenya adalah `firstdb`, jika ingin menggunakan database ke dua ubah connection yang ada di migration, sesuai dengan nama connection di `config/database.php`
 
 ```php
-  public function up()
-    {
-        Schema::connection('mysql2')->create('users', function (Blueprint $table) { // <= perhatikan connection nya
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
-    }
+public function up()
+{
+  Schema::connection('mysql2')->create('users', function (Blueprint $table) { // <= perhatikan connection nya
+    $table->id();
+    $table->string('name');
+    $table->string('email')->unique();
+    $table->timestamp('email_verified_at')->nullable();
+    $table->string('password');
+    $table->rememberToken();
+    $table->timestamps();
+  });
+}
 ```
 
 4. Jalankan migration satu persatu
 
-```php
+```bash
 php artisan migrate --database=mysql
 php artisan migrate --database=mysql2
 ```
@@ -711,23 +721,23 @@ php artisan migrate --database=mysql2
 ### **Validasi per menit menggunakan throttle**
 1. Membuat class middleware menggunakan artisan
 
-```php
+```bash
 php artisan make:middleware Report
 ```
 	
 2. Tambahkan Class middleware tadi ke dalam middlewareGroups yang ada di kernel.php
 ```php
 protected $middlewareGroups = [
-	'api' => [
-		'report' => \App\Http\Middleware\Report::class,
-	]
+  'api' => [
+    'report' => \App\Http\Middleware\Report::class,
+  ]
 ];
 ```
 
 3. Masuk Ke Web.php. dan Tambahkan Route middleware Group
 ```php
 Route::middleware('report', 'throttle:1,1440')->group(function () {
-			Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
+	Route::post('laporan', "Dashboard\ReportController@store")->name('laporan');
 });
 //'report' -> nama middleware yg sudah terdaftar di kernel
 //'throttle' -> library untuk Rate Limit
