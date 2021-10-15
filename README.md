@@ -81,7 +81,7 @@ Untuk mengubah format `created_at`, tambahkan method berikut di dalam model:
 ```php
 public function getCreatedAtFormattedAttribute()
 {
-   return $this->created_at->format('H:i d, M Y');
+    return $this->created_at->format('H:i d, M Y');
 }
 ```
 Method ini bisa digunakan dengan cara seperti ini : `$entry->created_at_formatted`.
@@ -95,7 +95,7 @@ Untuk mengubah format `updated_at`, tambahkan method berikut di dalam model:
 ```php
 public function getUpdatedAtFormattedAttribute()
 {
-   return $this->updated_at->format('H:i d, M Y');
+    return $this->updated_at->format('H:i d, M Y');
 }
 ```
 Method ini bisa digunakan dengan cara seperti ini : `$entry->updated_at_formatted`.
@@ -180,9 +180,9 @@ permintaan di atas mencari `id` yang valuenya bukan `1`,`2`,dan `3`.
 Sebelumnya, jika kita ingin mengisi tabel pivot. Kita bisa menggunakan method `sync()` seperti contoh dibawah ini:
 ```php
 public function store() {
-   ...
-   $user->roles()->sync([1, 2, 3]);
-   ...
+    ...
+    $user->roles()->sync([1, 2, 3]);
+    ...
 }
 ```
 dengan cara diatas, hanya akan mengisi kolom `user_id` dan `role_id` pada tabel `role_user`. Jika kita ingin menggunakan `created_at` dan `updated_at` pada tabel pivotnya yaitu `role_user`, maka kita perlu menambahkan method `->withTimestamps()` pada relasi model `User.php` seperti di bawah ini:
@@ -209,11 +209,11 @@ Pada model User, tambahkan fungsi seperti ini:
 
 ```php
 public function scopeIsAdmin($query) {
-  return $query->where('role', 'admin');
+    return $query->where('role', 'admin');
 }
 
 public function scopeIsMember($query) {
-  return $query->where('role', 'member');
+    return $query->where('role', 'member');
 }
 ```
 
@@ -247,9 +247,9 @@ User::role('member')->get();
 
 Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat diisi data pada array `$fillable` di modelnya. Jika kita ingin menambahkan property `fillable` ke model, kita dapat menambahkan field dari table kita ke dalam array fillable di modelnya, seperti berikut:
 ```php
- protected $fillable = [
-   'nama', 'email', 'password', 'alamat', 'hobi'
- ];
+protected $fillable = [
+    'nama', 'email', 'password', 'alamat', 'hobi'
+];
 ```
 Sebenarnya tidak ada masalah terhadap kode di atas, namun jika field dari tabelnya banyak dan kita memiliki kebutuhan untuk fieldnya dapat diisi semua, maka kita harus memasukkan seluruh fieldnya ke dalam array `$fillable` dan itu membuat kode menjadi banyak dan tentunya tidak efektif, karena apa? Jika kita menambahkan field baru, kita harus menambahkan field baru tersebut ke dalam array `$fillable` lagi.
 
@@ -299,13 +299,13 @@ php artisan make:model User -mcfs
 ```
 
 Jika kita ingin membuat `controller` dengan resource (default method dari laravel). Gunakan perintah ini (dengan tambahan huruf `r`):
-```php
+```bash
 php artisan make:model User -mcrfs
 ```
 
 Atau di laravel versi 8 kita bisa menyingkatnya dengan flag `-a` (yang berarti all). Maka kita akan membuat semuanya (`model`, `controller`,`migration`, `factory`, dan `seeder`) sekaligus, dengan perintah yang sangat singkat, seperti di bawah ini :
 
-```
+```bash
 php artisan make:model User -a
 ```
 
@@ -346,11 +346,11 @@ php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvid
 ```
 php artisan optimize:clear
 ```
- **or**
+**or**
 ```
 php artisan config:clear
 ```
- 
+
 5. terakhir jalankan migration
 
 ```
@@ -463,12 +463,12 @@ $user->hasAllRoles(Role::all());
 1. Permission pada Blade
 ```php
 @can('edit articles')
-  //
+    //
 @endcan
 // atau
 
 @if(auth()->user()->can('edit articles') && $some_other_condition)
-  //
+    //
 @endif
 // Bisa juga menggunakan @can, @cannot, @canany, dan @guest
 ```
@@ -517,7 +517,7 @@ $user->hasAllRoles(Role::all());
 
 // Alternatif lain, @unlessrole 
 @unlessrole('does not have this role')
-   Saya tidak punya role
+    Saya tidak punya role
 @else
     Saya punya role
 @endunlessrole
@@ -529,10 +529,10 @@ $user->hasAllRoles(Role::all());
 1. Tambahkan Kodingan di bawah ini pada **app/Http/Kernel.php**
 ```php
 protected $routeMiddleware = [
-  // ...
-  'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
-  'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
-  'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+    // ...
+    'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+    'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+    'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
 ];
 ```
 
@@ -586,7 +586,7 @@ public function __construct()
     $this->middleware(['role_or_permission:super-admin|edit articles']);
 }
 ```
- ---
+---
 
 ## Templating
 
@@ -601,7 +601,6 @@ public function __construct()
 ```php
 function toPdf($html, $landscape = false)
 {
-    
     $wkhtmltopdf = '/usr/local/bin/wkhtmltopdf';
 
     // manfaatkan variables laravel's environment 
@@ -631,7 +630,7 @@ function toPdf($html, $landscape = false)
     if ($errors){
         dd($errors);
     }else{
-        header('Content-Type: application/pdf'); 
+        header('Content-Type: application/pdf');
         echo $pdf;
     }
 }
@@ -691,15 +690,15 @@ DB_PASSWORD2=password kamu
 ```php
 public function up()
 {
-  Schema::connection('mysql2')->create('users', function (Blueprint $table) { // <= perhatikan connection nya
-    $table->id();
-    $table->string('name');
-    $table->string('email')->unique();
-    $table->timestamp('email_verified_at')->nullable();
-    $table->string('password');
-    $table->rememberToken();
-    $table->timestamps();
-  });
+    Schema::connection('mysql2')->create('users', function (Blueprint $table) { // <= perhatikan connection nya
+        $table->id();
+        $table->string('name');
+        $table->string('email')->unique();
+        $table->timestamp('email_verified_at')->nullable();
+        $table->string('password');
+        $table->rememberToken();
+        $table->timestamps();
+    });
 }
 ```
 
@@ -728,9 +727,9 @@ php artisan make:middleware Report
 2. Tambahkan Class middleware tadi ke dalam middlewareGroups yang ada di kernel.php
 ```php
 protected $middlewareGroups = [
-  'api' => [
-    'report' => \App\Http\Middleware\Report::class,
-  ]
+    'api' => [
+        'report' => \App\Http\Middleware\Report::class,
+    ]
 ];
 ```
 
@@ -753,10 +752,10 @@ Contoh:
 ```php
 if ($exception instanceof ThrottleRequestsException) {
 
-   return response()->json(abort(429, 'Upaya Hari Ini Sudah Habis'));
+    return response()->json(abort(429, 'Upaya Hari Ini Sudah Habis'));
 }else {
 
-   return parent::render($request, $exception);            
+    return parent::render($request, $exception);            
 }
 ```
 
@@ -777,9 +776,9 @@ Route::get('book/{book}', 'BookController@show');
 
 //Controller
 class BookController {
-     public function show (Book $book){
-           return $book;
-     }
+    public function show (Book $book){
+        return $book;
+    }
 }
 ```
 
@@ -793,9 +792,9 @@ Route::get('book/{book:slug}', 'BookController@show');
 
 // Controller => akan menampilkan data berdasarkan slugnya tanpa query where
 class BookController {
-     public function show (Book $book){
-           return $book;
-     }
+    public function show (Book $book){
+        return $book;
+    }
 }
 ```
 
@@ -838,7 +837,7 @@ return view('view.index', $data);
 ```php
 $users = User::get();
 $posts = Post::get();
-    
+
 return view('view.index', compact('users', 'posts'))
 ```
 Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/manual/en/function.compact.php'>disini</a>
