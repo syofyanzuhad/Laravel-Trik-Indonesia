@@ -15,16 +15,26 @@ Tapi setidaknya tulislah sebuah coretan sekali, tapi berarti (rapi, mudah dipaha
    - Jumlah trik.
    - Daftar Isi.
    - Tulis trik sesuai dengan contoh yang ada atau format di bawah ini:
-     - Judul: `- [Judul tulisan yang ingin dibuat](#judul-tulisan-yang-ingin-dibuat)`
+     - Judul: 
+      ```
+      - [Judul tulisan yang ingin dibuat](#judul-tulisan-yang-ingin-dibuat)
+      ```
+     - Penulis: 
+      ```
+     _Ditulis oleh: [syofyanzuhad](https://github.com/syofyanzuhad)_
+      ```
      - Isi: 
       ```
       ### ***Judul Tulisan Yang Ingin Dibuat***
+
+      _Ditulis oleh: [syofyanzuhad](https://github.com/syofyanzuhad)_
+
       Disini berisi penjelasan mengenai cara menggunakan triknya.
       1. langkah satu
       2. langkah dua
       dst.
       ```
-4. Kirimkan pull-request dengan judul yang jelas.
+4. Kirimkan pull-request dengan judul yang jelas. Contoh `Add: cara membuat kontribusi`
 
 *_catatan: berikan comment untuk menambahkan label `hacktoberfest-accepted` (jika diinginkan)_.
 

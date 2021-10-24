@@ -74,6 +74,8 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 
 ### **Cara mengubah format output `created_at` dan `updated_at` lewat model**
 
+_Ditulis oleh: [syofyanzuhad](https://github.com/syofyanzuhad)_
+
 - **created_at**
 
 Untuk mengubah format `created_at`, tambahkan method berikut di dalam model:
@@ -104,6 +106,8 @@ Dan akan menampilkan hasil seperti ini: `04:19 23, Aug 2020`.
 
 ### **Cara Mengubah format text created_at dan updated_at menjadi tgl_dibuat dan tgl_diupdate lewat model**
 
+_Ditulis oleh: [aldyrifaldi](https://github.com/aldyrifaldi)_
+
 Caranya sangat mudah 
 
 - **created_at**
@@ -118,7 +122,9 @@ dan untuk  updated_at cukup menambahkan:
 ```php
 const UPDATED_AT = 'tgl_diupdate';
 ```
-### Penulisan where dengan whereKolom
+### **Penulisan where dengan whereKolom**
+
+_Ditulis oleh: [syofyanzuhad](https://github.com/syofyanzuhad)_
 
 - **where**
 
@@ -148,7 +154,9 @@ dan:
 ```php
 $users = User::whereIdAndNama(1, 'namauser')->get();
 ```
-### Penulisan whereIn dan whereNotIn
+### **Penulisan whereIn dan whereNotIn**
+
+_Ditulis oleh: [zulmarij](https://github.com/zulmarij)_
 
 - **whereIn**
 
@@ -177,6 +185,8 @@ permintaan di atas mencari `id` yang valuenya bukan `1`,`2`,dan `3`.
 
 ### **Cara otomatis mengisi kolom created_at dan updated_at pada tabel pivot**
 
+_Ditulis oleh: [syofyanzuhad](https://github.com/syofyanzuhad)_
+
 Sebelumnya, jika kita ingin mengisi tabel pivot. Kita bisa menggunakan method `sync()` seperti contoh dibawah ini:
 ```php
 public function store() {
@@ -194,6 +204,8 @@ public function role()
 ```
 
 ### **Menuliskan query where menggunakan `LocalQueryScope`**
+
+_Ditulis oleh: [Lucky7Tb](https://github.com/Lucky7Tb)_
 
 Misal anda mempunyai model `User` lalu anda ingin mengambil data user dengan role 'admin' atau 'member'. Kita bisa saja menulis seperti ini
 
@@ -245,6 +257,8 @@ User::role('member')->get();
 
 ### **Cara membuat fillable di seluruh fieldnya pada model dengan mudah**
 
+_Ditulis oleh: [aprian1337](https://github.com/aprian1337)_
+
 Seperti kita tau, jika kita ingin menambahkan data baru menggunakan `create` di eloquent, kita harus mendeklarasikan terlebih dahulu field apa saja yang dapat diisi data pada array `$fillable` di modelnya. Jika kita ingin menambahkan property `fillable` ke model, kita dapat menambahkan field dari table kita ke dalam array fillable di modelnya, seperti berikut:
 ```php
 protected $fillable = [
@@ -261,6 +275,8 @@ protected $guarded = [];
 ```
 
 ### **Cara menerapkan select kolom pada table di Eloquent**
+
+_Ditulis oleh: [Muh-Sidik](https://github.com/Muh-Sidik)_
 
 Oke bagaimana cara select dengan eloquent?
 Misalnya, kita mempunyai 30 column pada pada 1 table lalu yang kita ingin tampilkan hanya 5 column saja.
@@ -292,6 +308,8 @@ User::all(['name', 'email']);
 
 ### **Cara membuat model, controller, migration, factory, seeder sekaligus**
 
+_Ditulis oleh: [syofyanzuhad](https://github.com/syofyanzuhad)_
+
 Untuk membuat `model`, `controller`,`migration`, `factory`, dan `seeder` sekaligus cukup jalankan perintah untuk membuat model dengan tambahan `-mcfs`, seperti berikut :
 
 ```bash
@@ -321,6 +339,8 @@ php artisan make:model User -a
 - [Cara Menggunakan Spatie di Middleware](#cara-menggunakan-spatie-di-middleware)
 ---
 ### **Install Spatie Role Permission**
+
+_Ditulis oleh: [arifwardan](https://github.com/arifwardan)_
 
 1. Install package
 
@@ -360,6 +380,9 @@ php artisan migrate
 ---
 
 ### **Cara menggunakan Role**
+
+_Ditulis oleh: [Ridwanhasanah](https://github.com/Ridwanhasanah)_
+
 1. membuat role 
 ```php
 use Spatie\Permission\Models\Role;
@@ -378,6 +401,8 @@ $user->revokeRoleTo($role); //$role = nama rolenya apa
 ---
 
 ### **Cara Menggunakan Permission**
+
+_Ditulis oleh: [Ridwanhasanah](https://github.com/Ridwanhasanah)_
 
 1. Menambahkan Permission
 ```php
@@ -427,6 +452,9 @@ $user->hasAnyPermission(['edit articles', 1, 5]);
 ---
 
 ### **Cara Menggunakan Permission Via Role**
+
+_Ditulis oleh: [Ridwanhasanah](https://github.com/Ridwanhasanah)_
+
 1. Menerapkan Role ke User manapun
 ```php
 $user->assignRole('writer');
@@ -460,6 +488,9 @@ $user->hasAllRoles(Role::all());
 ```
 ---
 ### **Cara Menggunakan Spatie di Blade**
+
+_Ditulis oleh: [Ridwanhasanah](https://github.com/Ridwanhasanah)_
+
 1. Permission pada Blade
 ```php
 @can('edit articles')
@@ -526,6 +557,10 @@ $user->hasAllRoles(Role::all());
 ---
 
 ### **Cara Menggunakan Spatie di Middleware**
+
+_Ditulis oleh: [Ridwanhasanah](https://github.com/Ridwanhasanah)_
+
+
 1. Tambahkan Kodingan di bawah ini pada **app/Http/Kernel.php**
 ```php
 protected $routeMiddleware = [
@@ -596,6 +631,9 @@ public function __construct()
 ---
 
 ### **Html To Pdf**
+
+_Ditulis oleh: [arifwardan](https://github.com/arifwardan)_
+
 - Sebuah fungsi untuk mengubah string html menjadi string pdf menggunakan wkhtmltopdf. Fungsi ini tidak menggunakan file sementara apa pun dan tidak bergantung pada plugin. untuk info update silahkan lihat <a href="https://github.com/meertensm/HtmlToPdf">meertensm/HtmlToPdf</a>
 
 ```php
@@ -643,7 +681,9 @@ function toPdf($html, $landscape = false)
 - [Koneksi Banyak Basis Data (Multiple-connection Database)](#koneksi-banyak-basis-data-multiple-connection-database)
 ---
 
-### Koneksi Banyak Basis Data (Multiple-connection Database)
+### **Koneksi Banyak Basis Data (Multiple-connection Database)**
+
+_Ditulis oleh: [arifwardan](https://github.com/arifwardan)_
 
 - biasa di gunakan untuk aplikasi menengah ke atas
 
@@ -718,6 +758,9 @@ php artisan migrate --database=mysql2
 ---
 
 ### **Validasi per menit menggunakan throttle**
+
+_Ditulis oleh: [Andihamsah](https://github.com/Andihamsah)_
+
 1. Membuat class middleware menggunakan artisan
 
 ```bash
@@ -768,6 +811,8 @@ if ($exception instanceof ThrottleRequestsException) {
 
 ### **Route Model Binding**
 
+_Ditulis oleh: [hanifazzuhdi](https://github.com/hanifazzuhdi)_
+
 Untuk mencari data berdasarkan id / kolom lain pada suatu table kita bisa menggunakan route model binding yang disediakan laravel. Misalnya : 
 
 ```php
@@ -812,6 +857,9 @@ Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terleb
 ---
 
 ### **Cara mengembalikan view dengan variabel**
+
+_Ditulis oleh: [Muh-Sidik](https://github.com/Muh-Sidik)_
+
 Ada beberapa cara untuk mengolah variabel ke view yang akan kita render untuk `front-end`, yaitu:
 1. Menggunakan fungsi `with()`:
 ```php
@@ -853,6 +901,8 @@ Note: untuk fungsi `compact()` dapat dipelajari <a href='https://www.php.net/man
 
 ### **Penulisan singkat if-else dan if-elseif-else dengan ternary**
 
+_Ditulis oleh: [aldyrifaldi](https://github.com/aldyrifaldi)_
+
 - **if-else**
 ```php
 // ternary operators (?:) atau istilah lainnya shorthand if/else.
@@ -881,7 +931,7 @@ echo $role == 0 ? 'Admin' : 'Pengunjung';
 
 - **if-elseif-else**
 
-**Hindari** penulisan seperti ini: 
+**Hindari** penulisan seperti ini:
 
 ```php
 $role = 0;
