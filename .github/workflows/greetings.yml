@@ -11,6 +11,6 @@ jobs:
     steps:
     - uses: actions/first-interaction@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token: ${{ secrets.ACCESS_TOKEN }}
         issue-message: 'Hai, terima kasih sudah mengirim issue.'
         pr-message: 'Hai, terima kasih sudah mengiirim pull request. Agar tulisanmu makin cakep, pastikan kamu sudah melihat file CONTRIBUTING ya..'
