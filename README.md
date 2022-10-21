@@ -29,7 +29,7 @@
 Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 	
 - <img src='https://img.shields.io/github/last-commit/syofyanzuhad/laravel-trik-indonesia/main'> 
-- _Berisi: **21** trik._
+- _Berisi: **22** trik._
 
 ### Kirimkan [`pull request`](https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/contribute) untuk memberikan manfaat lebih banyak !
 
@@ -45,7 +45,7 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 - [Templating](#templating) (1 trik).
 - [Basis Data (Database)](#basis-data-database) (1 trik).
 - [Middleware](#middleware)(1 trik).
-- [Routing](#routing) (1 trik).
+- [Routing](#routing) (2 trik).
 - [Tampilan (View)](#tampilan-view) (1 trik).
 - [Lain - lain](#lain-lain) (1 trik).
 
@@ -806,7 +806,7 @@ if ($exception instanceof ThrottleRequestsException) {
 
 ⬆️ [Ke Atas](#laravel-trik-indonesia) ➡️ [Berikutnya (Tampilan / view)](#tampilan-view)
 - [Route model binding](#route-model-binding)
-
+- [Mengelompokkan route berdasarkan controller yang sama](#mengelompokkan-route-berdasarkan-controller-yang-sama)
 ---
 
 ### **Route Model Binding**
@@ -847,6 +847,28 @@ Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terleb
 
 ---
 
+###**Mengelompokkan route berdasarkan controller yang sama**
+
+_Ditulis oleh: [mbaharuddinyusuf](https://github.com/ByeByu07)_
+
+untuk mengelompokkan route berdasarkan controller yang sama.
+
+Biasanya kita menulis :
+
+```php
+Route::get('/index',[AdminController,'index']);
+Route::get('/show',[AdminController,'show']);
+Route::get('/edit',[AdminController,'edit']);
+```
+Akan lebih rapi dan cepat, jika :
+
+```php
+Route::controller(AdminController::class)->group(function(){
+	Route::get('/index','index');
+	Route::get('/show','show');
+	Route::get('/edit','edit');
+}
+```
 
 ## Tampilan (View)
 
