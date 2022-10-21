@@ -846,7 +846,7 @@ class BookController {
 Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terlebih dahulu sebelum menampilkan data.
 
 ---
----
+
 ### **Mengelompokkan route berdasarkan controller yang sama**
 
 _Ditulis oleh: [mbaharuddinyusuf](https://github.com/ByeByu07)_
