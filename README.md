@@ -846,8 +846,8 @@ class BookController {
 Cara ini akan mempersingkat kode dibandingkan harus melakukan query where terlebih dahulu sebelum menampilkan data.
 
 ---
-
-###**Mengelompokkan route berdasarkan controller yang sama**
+---
+### **Mengelompokkan route berdasarkan controller yang sama**
 
 _Ditulis oleh: [mbaharuddinyusuf](https://github.com/ByeByu07)_
 
@@ -869,6 +869,7 @@ Route::controller(AdminController::class)->group(function(){
 	Route::get('/edit','edit');
 }
 ```
+---
 
 ## Tampilan (View)
 
