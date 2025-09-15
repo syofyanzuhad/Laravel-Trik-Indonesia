@@ -12,6 +12,10 @@
   <a href='https://github.com/syofyanzuhad/Laravel-Trik-Indonesia'>
 	  <img src='https://visitor-badge.glitch.me/badge?page_id=syofyanzuhad.laravel-trik-indonesia'>
 	</a>
+	
+  <a href='https://github.com/syofyanzuhad/uptime-kita'>
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=syofyanzuhad.laravel-trik-indonesia" />
+  </a>
 	<a href="https://github.com/syofyanzuhad/Laravel-Trik-Indonesia/pulls">
 		<img src="https://img.shields.io/github/issues-pr/syofyanzuhad/Laravel-Trik-Indonesia" alt="Pull Requests Badge"/>
 	</a>
@@ -36,6 +40,16 @@ Kumpulan "_trik_" berbahasa indonesia untuk menggunakan framework laravel.
 **Harap perhatikan juga cara untuk berkontribusi [DISINI](/CONTRIBUTING.md) !!**
 
 > _inspired by: [LaravelDaily](https://github.com/LaravelDaily/laravel-tips)_
+
+## Star History
+
+<a href="https://www.star-history.com/#syofyanzuhad/Laravel-Trik-Indonesia&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=syofyanzuhad/Laravel-Trik-Indonesia&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=syofyanzuhad/Laravel-Trik-Indonesia&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=syofyanzuhad/Laravel-Trik-Indonesia&type=Date" />
+ </picture>
+</a>
 
 # Daftar Isi :
 
